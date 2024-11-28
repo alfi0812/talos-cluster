@@ -1,0 +1,115 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: nextcloud
+    namespace: nextcloud
+spec:
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: nextcloud
+            version: 32.2.11
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    timeout: 20m
+    values:
+      global:
+        stopAll: false
+      credentials:
+        s3:
+          type: s3
+          url: "${S3_URL}"
+          bucket: "${S3_BUCKET}"
+          accessKey: "${S3_ID}"
+          secretKey: "${S3_KEY}"
+          encrKey: "${S3_ENCRYPTION_KEY}"
+      ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: nextcloud.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix
+      cnpg:
+        main:
+          cluster:
+            singleNode: true
+          pgVersion: 15
+          mode: recovery
+          backups:
+            retentionPolicy: 10d
+            revision: "2"
+            enabled: true
+            credentials: s3
+          recovery:
+            revision: "1"
+            method: object_store
+            credentials: s3
+      persistence:
+        config:
+          volsync:
+          - name: config
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true
+            src:
+              enabled: true
+        data:
+          enabled: true
+          type: nfs
+          path: ${NEXTCLOUD_NFS_PATH}
+          server: ${CONFIG_TRUENAS_IP}
+        html:
+          volsync:
+          - name: html
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true
+            src:
+              enabled: true
+      nextcloud:
+        collabora:
+          enabled: true
+          password: "${NEXTCLOUD_PASSWORD}"
+        credentials:
+          initialAdminPassword: "${NEXTCLOUD_PASSWORD}"
+          initialAdminUser: "${NEXTCLOUD_USER}"
+        general:
+          accessIP: ${TRAEFIK_IP}
+          default_phone_region: DE
+        previews:
+          providers:
+          - BMP
+          - GIF
+          - JPEG
+          - Krita
+          - MarkDown
+          - MP3
+          - OpenDocument
+          - PNG
+          - TXT
+          - XBitmap

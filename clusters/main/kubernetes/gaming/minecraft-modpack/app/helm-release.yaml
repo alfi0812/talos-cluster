@@ -1,0 +1,78 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: minecraft-modpack
+    namespace: minecraft
+spec:
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: minecraft-java
+            version: 11.2.4
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    values:
+      global:
+        stopAll: false
+      mcbackup:
+        enabled: false
+      persistence:
+        data:
+          enabled: true
+          type: nfs
+          path: ${MINECRAFT_NFS_PATH}
+          server: ${CONFIG_TRUENAS_IP}
+        backups:
+          enabled: false
+      resources:
+        limits:
+          cpu: 8000m
+          memory: 16Gi
+      workload:
+        main:
+          podSpec:
+            containers:
+              main:
+                imageSelector: j17Image
+                env:
+                  FORCE_REDOWNLOAD: '{{false}}'
+                  FORGEVERSION: 43.2.14
+                  FORGE_INSTALLER: ''
+                  FORGE_INSTALLER_URL: ''
+                  GENERATOR_SETTINGS: ''
+                  ICON: ''
+                  JVM_OPTS: ''
+                  JVM_XX_OPTS: -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200
+                    -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch
+                    -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M
+                    -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4
+                    -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90
+                    -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem
+                    -XX:MaxTenuringThreshold=1
+                  MAX_TICK_TIME: 60000
+                  DISABLE_HEALTHCHECK: true
+                  MEMORY: 12G
+                  OVERRIDE_SERVER_PROPERTIES: false
+                  RCON_PASSWORD: ${MINECRAFT_PASSWORD}
+                  TYPE: FORGE
+                  USE_AIKAR_FLAGS: false
+                  USE_FLARE_FLAGS: false
+                  USE_SIMD_FLAGS: false
+                  VERSION: 1.19.2
+                  VIEW_DISTANCE: 10
+              mcbackup:
+                enabled: false
+

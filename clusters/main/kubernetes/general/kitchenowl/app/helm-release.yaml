@@ -1,0 +1,91 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: kitchenowl
+    namespace: kitchenowl
+spec:
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: kitchenowl
+            version: 11.2.3
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    values:
+      global:
+        stopAll: false
+      credentials:
+        s3:
+          type: s3
+          url: "${S3_URL}"
+          bucket: "${S3_BUCKET}"
+          accessKey: "${S3_ID}"
+          secretKey: "${S3_KEY}"
+          encrKey: "${S3_ENCRYPTION_KEY}"
+      ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: kitchenowl.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix
+      persistence:
+        data:
+          volsync:
+          - name: data
+            type: restic
+            credentials: s3
+            dest:
+              cacheCapacity: 10Gi
+              enabled: true
+            src:
+              cacheCapacity: 10Gi
+              enabled: true
+      cnpg:
+        main:
+          cluster:
+            singleNode: true
+          mode: recovery
+          backups:
+            retentionPolicy: 10d
+            revision: "2"
+            enabled: true
+            credentials: s3
+          recovery:
+            revision: "1"
+            method: object_store
+            credentials: s3
+      workload:
+        main:
+          podSpec:
+            containers:
+              main:
+                env:
+                  FRONT_URL: https://kitchenowl.${DOMAIN_G}
+                  SMTP_HOST: ${SMTP_HOST}
+                  SMTP_PORT: 465
+                  SMTP_USER: ${SMTP_USER}
+                  SMTP_PASS: ${SMTP_PASSWORD_KITCHENOWL}
+                  SMTP_FROM: kitchenowl@${DOMAIN_G}

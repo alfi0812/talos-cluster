@@ -1,0 +1,89 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: pihole
+      version: 18.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      stopAll: false
+    pihole:
+      webPassword: "${PIHOLE_PASSWORD}"
+      dnsServers: []
+    credentials:
+      s3:
+        type: s3
+        url: "${S3_URL}"
+        bucket: "${S3_BUCKET}"
+        accessKey: "${S3_ID}"
+        secretKey: "${S3_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    service:
+      dns:
+        loadBalancerIP: ${PIHOLE_IP}
+        type: LoadBalancer
+    ingress:
+      main:
+        enabled: true
+        integrations:
+          traefik:
+            enabled: true
+            entrypoints:
+            - websecure
+            middlewares:
+            - name: pihole-regex
+              namespace: traefik
+            - name: pihole-add
+              namespace: traefik
+            - name: auth
+              namespace: traefik
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: pihole.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
+    persistence:
+      config:
+        volsync:
+        - name: config
+          type: restic
+          credentials: s3
+          dest:
+            enabled: true
+          src:
+            enabled: true
+      dnsmasq:
+        volsync:
+        - name: dnsmasq
+          type: restic
+          credentials: s3
+          dest:
+            enabled: true
+          src:
+            enabled: true
