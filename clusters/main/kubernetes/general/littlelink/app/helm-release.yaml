@@ -46,7 +46,7 @@ spec:
               - path: /
                 pathType: Prefix
       littlelink:
-        meta_title: "techno tim"
+        meta_title: "Alfi0812"
         meta_description: "techno tim link page"
         meta_author: "techno tim"
         theme: "dark"
@@ -54,9 +54,8 @@ spec:
         avatar_url: "https://pbs.twimg.com/profile_images/1286144221217316864/qiaskopb_200x200.jpg"
         avatar_2x_url: "https://pbs.twimg.com/profile_images/1286144221217316864/qiaskopb_400x400.jpg"
         avatar_alt: "techno tim profile pic"
-        name: "technotim"
-        bio: "hey! just a place where you can connect with me!"
-        github: "https://github.com/timothystewart6"
+        name: "Alfi0812"
+        github: "https://github.com/alfi0812"
         twitter: "https://twitter.com/technotimlive"
         instagram: "https://www.instagram.com/techno.tim"
         youtube: "https://www.youtube.com/channel/ucok-ghyjcwznj3br4oxwh0a"
@@ -64,4 +63,3 @@ spec:
         discord: "https://discord.gg/djkexrj"
         tiktok: "https://www.tiktok.com/@technotim"
         kit: "https://kit.co/technotim"
-        footer: "thanks for stopping by!"
