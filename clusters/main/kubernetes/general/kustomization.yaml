@@ -14,3 +14,4 @@ resources:
   - synctube/ks.yaml
   - nextcloud/ks.yaml
   - uptime-kuma/ks.yaml
+  - littlelink/ks.yaml
