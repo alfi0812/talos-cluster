@@ -33,9 +33,6 @@ spec:
               enabled: true
               entrypoints:
               - websecure
-            certManager:
-              enabled: false
-              certificateIssuer: domain-0-le-prod
           hosts:
             - host: ${DOMAIN_0}
               paths:
