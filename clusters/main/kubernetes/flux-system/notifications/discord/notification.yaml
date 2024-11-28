@@ -26,6 +26,9 @@ spec:
       namespace: kyverno
     - kind: HelmRelease
       name: "*"
+      namespace: littlelink
+    - kind: HelmRelease
+      name: "*"
       namespace: longhorn-system
     - kind: HelmRelease
       name: "*"
