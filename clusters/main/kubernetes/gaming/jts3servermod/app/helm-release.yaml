@@ -45,6 +45,8 @@ spec:
                 enabled: true
               src:
                 enabled: true
+                trigger:
+                  schedule: 30 0 * * *
         logs:
           volsync:
             - name: logs
@@ -54,4 +56,6 @@ spec:
                 enabled: true
               src:
                 enabled: true
+                trigger:
+                  schedule: 30 0 * * *
 

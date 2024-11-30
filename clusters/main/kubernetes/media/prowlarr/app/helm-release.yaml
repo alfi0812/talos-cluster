@@ -67,6 +67,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 0 1 * * *
       metrics:
         main:
           enabled: false

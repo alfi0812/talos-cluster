@@ -77,6 +77,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 30 2 * * *
         data:
           enabled: true
           type: nfs
@@ -91,6 +93,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
       nextcloud:
         collabora:
           enabled: true

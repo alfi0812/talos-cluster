@@ -63,6 +63,8 @@ spec:
             src:
               cacheCapacity: 10Gi
               enabled: true
+              trigger:
+                schedule: 30 0 * * *
       cnpg:
         main:
           cluster:

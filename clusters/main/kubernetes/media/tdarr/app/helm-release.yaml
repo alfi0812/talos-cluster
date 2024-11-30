@@ -67,6 +67,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 0 2 * * *
         logs:
           volsync:
           - name: logs
@@ -76,6 +78,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 0 2 * * *
         server:
           volsync:
           - name: server
@@ -85,6 +89,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 0 2 * * *
         media:
           enabled: true
           existingClaim: media-nfs-pvc
