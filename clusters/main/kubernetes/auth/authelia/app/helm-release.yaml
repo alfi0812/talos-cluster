@@ -73,8 +73,6 @@ spec:
             dest:
               enabled: true
             src:
-              trigger:
-                schedule: 0 0 * * *
               enabled: true
     workload:
       main:
