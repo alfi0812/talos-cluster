@@ -102,6 +102,7 @@ spec:
           recovery:
             method: object_store
             credentials: s3
+            revision: "1"
       vaultwarden:
         admin:
           enabled: true

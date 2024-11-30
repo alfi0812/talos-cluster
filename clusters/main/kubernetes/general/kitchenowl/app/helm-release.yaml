@@ -76,7 +76,7 @@ spec:
             enabled: true
             credentials: s3
           recovery:
-            revision: "1"
+            revision: "2"
             method: object_store
             credentials: s3
       workload:
