@@ -61,6 +61,7 @@ spec:
           retentionPolicy: 10d
           enabled: true
           credentials: s3
+          schedule: 0 0 * * *
         recovery:
           method: object_store
           credentials: s3
