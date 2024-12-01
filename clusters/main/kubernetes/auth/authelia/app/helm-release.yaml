@@ -79,6 +79,8 @@ spec:
               enabled: true
             src:
               enabled: true
+              trigger:
+                schedule: 5 0 * * *
     workload:
       main:
         replicas: 1
