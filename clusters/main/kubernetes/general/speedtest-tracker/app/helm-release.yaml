@@ -77,6 +77,12 @@ spec:
           backups:
             enabled: true
             credentials: minio
+            scheduledBackups:
+              - name: daily-backup
+                schedule: "0 0 0 * * *"
+                backupOwnerReference: self
+                immediate: true
+                suspend: false
           recovery:
             credentials: minio
       workload:
