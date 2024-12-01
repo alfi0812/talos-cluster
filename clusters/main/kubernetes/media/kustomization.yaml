@@ -9,7 +9,7 @@ resources:
   - sabnzbd/ks.yaml
   - bazarr/ks.yaml
   - bazarr-anime/ks.yaml
-  - jellyseer/ks.yaml
+  - jellyseerr/ks.yaml
   - lidarr/ks.yaml
   - readarr/ks.yaml
   - recyclarr/ks.yaml
