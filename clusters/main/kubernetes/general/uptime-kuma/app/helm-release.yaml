@@ -28,12 +28,12 @@ spec:
       global:
         stopAll: false
       credentials:
-        s3:
+        minio:
           type: s3
-          url: "${S3_URL}"
-          bucket: "${S3_BUCKET}"
-          accessKey: "${S3_ID}"
-          secretKey: "${S3_KEY}"
+          url: "${S3_URL_MINIO}"
+          bucket: "${S3_BUCKET}-uptime-kuma"
+          accessKey: "${S3_ACCESS_KEY}"
+          secretKey: "${S3_SECRET_KEY}"
           encrKey: "${S3_ENCRYPTION_KEY}"
       ingress:
         main:
@@ -56,7 +56,7 @@ spec:
           volsync:
           - name: config
             type: restic
-            credentials: s3
+            credentials: minio
             dest:
               enabled: true
             src:

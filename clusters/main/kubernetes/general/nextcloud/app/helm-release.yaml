@@ -29,12 +29,12 @@ spec:
       global:
         stopAll: false
       credentials:
-        s3:
+        minio:
           type: s3
-          url: "${S3_URL}"
-          bucket: "${S3_BUCKET}"
-          accessKey: "${S3_ID}"
-          secretKey: "${S3_KEY}"
+          url: "${S3_URL_MINIO}"
+          bucket: "${S3_BUCKET}-nextcloud"
+          accessKey: "${S3_ACCESS_KEY}"
+          secretKey: "${S3_SECRET_KEY}"
           encrKey: "${S3_ENCRYPTION_KEY}"
       ingress:
         main:
@@ -59,20 +59,17 @@ spec:
           pgVersion: 15
           mode: recovery
           backups:
-            retentionPolicy: 10d
-            revision: "2"
             enabled: true
-            credentials: s3
+            credentials: minio
           recovery:
-            revision: "2"
             method: object_store
-            credentials: s3
+            credentials: minio
       persistence:
         config:
           volsync:
           - name: config
             type: restic
-            credentials: s3
+            credentials: minio
             dest:
               enabled: true
             src:
@@ -88,7 +85,7 @@ spec:
           volsync:
           - name: html
             type: restic
-            credentials: s3
+            credentials: minio
             dest:
               enabled: true
             src:
