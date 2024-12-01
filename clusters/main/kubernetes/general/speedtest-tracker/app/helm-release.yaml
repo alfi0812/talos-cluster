@@ -75,7 +75,7 @@ spec:
           cluster:
             singleNode: true
           backups:
-            enabled: false
+            enabled: true
             credentials: s3
             revision: "2"
             scheduledBackups:
