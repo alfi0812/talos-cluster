@@ -75,8 +75,8 @@ spec:
           cluster:
             singleNode: true
           backups:
-            enabled: true
-            credentials: s3
+            enabled: false
+            credentials: minio
             revision: "2"
             scheduledBackups:
               - name: daily-backup
