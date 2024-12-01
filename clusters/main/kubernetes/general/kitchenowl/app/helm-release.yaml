@@ -71,6 +71,12 @@ spec:
           backups:
             enabled: true
             credentials: minio
+            scheduledBackups:
+              - name: daily-backup
+                schedule: "0 5 0 * * *"
+                backupOwnerReference: self
+                immediate: true
+                suspend: false
           recovery:
             method: object_store
             credentials: minio
