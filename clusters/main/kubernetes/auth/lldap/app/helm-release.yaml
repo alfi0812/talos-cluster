@@ -29,12 +29,12 @@ spec:
     keepHistory: false
   values:
     credentials:
-      s3:
+      minio:
         type: s3
-        url: "${S3_URL}"
-        bucket: "${S3_BUCKET}"
-        accessKey: "${S3_ID}"
-        secretKey: "${S3_KEY}"
+        url: "${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-lldap"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
         encrKey: "${S3_ENCRYPTION_KEY}"
     ingress:
         main:
@@ -78,19 +78,18 @@ spec:
           singleNode: true
         mode: recovery
         backups:
-          retentionPolicy: 10d
           enabled: true
-          credentials: s3
+          credentials: minio
         recovery:
           method: object_store
-          credentials: s3
+          credentials: minio
 
     persistence:
       data:
         volsync:
           - name: data
             type: restic
-            credentials: s3
+            credentials: minio
             dest:
               enabled: true
             src:
