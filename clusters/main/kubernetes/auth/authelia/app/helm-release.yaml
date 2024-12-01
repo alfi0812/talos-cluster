@@ -57,7 +57,7 @@ spec:
         cluster:
           singleNode: true
         backups:
-          enabled: true
+          enabled: false
           credentials: minio
         recovery:
           method: object_store
