@@ -77,7 +77,7 @@ spec:
           backups:
             enabled: false
             credentials: minio
-            revision: 3
+            revision: "3"
             scheduledBackups:
               - name: daily-backup
                 schedule: "0 */15 * * * *"
@@ -86,7 +86,7 @@ spec:
                 suspend: false
           recovery:
             credentials: minio
-            revision: 2
+            revision: "2"
       workload:
         main:
           podSpec:
