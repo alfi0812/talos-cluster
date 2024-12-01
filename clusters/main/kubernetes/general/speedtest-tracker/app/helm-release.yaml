@@ -77,14 +77,14 @@ spec:
           backups:
             enabled: true
             credentials: minio
-          recovery:
-            credentials: minio
             scheduledBackups:
             - name: test
               schedule: "*/15 * * * *"
               backupOwnerReference: self
               immediate: true
               suspend: false
+          recovery:
+            credentials: minio
       workload:
         main:
           podSpec:
