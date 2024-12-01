@@ -25,12 +25,17 @@
   "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
   "flux": {
     "fileMatch": [
-      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
+      "(^|/)clusters/.+\\.ya?ml$",
+      "(^|/)repositories/.+\\.ya?ml$",
+      "(^|/)kubernetes/.+\\.ya?ml$"
     ]
   },
   "helm-values": {
     "fileMatch": [
-      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
+      "(^|/)clusters/.+\\-values\\.ya?ml$",      // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in clusters
+      "(^|/)kubernetes/.+\\-values\\.ya?ml$",    // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in kubernetes
+      "(^|/)repositories/.+\\-values\\.ya?ml$",  // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in repositories
+      "(^|/)charts/.+\\-values\\.ya?ml$"         // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in charts
     ]
   },
   "kubernetes": {
