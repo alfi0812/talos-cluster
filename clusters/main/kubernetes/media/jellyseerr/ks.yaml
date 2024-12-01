@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: clusters/main/kubernetes/media/jellyseer/app
+  path: clusters/main/kubernetes/media/jellyseerr/app
   prune: true
   sourceRef:
     kind: GitRepository
