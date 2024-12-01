@@ -38,7 +38,7 @@ spec:
         minio:
           type: s3
           url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}"
+          bucket: "${S3_BUCKET}-speedtest-tracker"
           accessKey: "${S3_ACCESS_KEY}"
           secretKey: "${S3_SECRET_KEY}"
           encrKey: "${S3_ENCRYPTION_KEY}"
@@ -69,17 +69,17 @@ spec:
             src:
               enabled: true
               trigger:
-                schedule: 35 3 * * *
+                schedule: 30 3 * * *
       cnpg:
         main:
           cluster:
             singleNode: true
+          mode: recovery
           backups:
-            enabled: false
+            enabled: true
             credentials: minio
           recovery:
             credentials: minio
-            revision: "2"
       workload:
         main:
           podSpec:
