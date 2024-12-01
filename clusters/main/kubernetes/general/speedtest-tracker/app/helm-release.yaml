@@ -79,7 +79,7 @@ spec:
             credentials: minio
             scheduledBackups:
               - name: daily-backup
-                schedule: "0 0 0 * * *"
+                schedule: "0 */15 * * * *"
                 backupOwnerReference: self
                 immediate: true
                 suspend: false
