@@ -81,8 +81,7 @@ spec:
               enabled: true
           recovery:
             method: object_store
-            credentials: s3
-            revision: "2"
+            credentials: minio
       workload:
         main:
           podSpec:
