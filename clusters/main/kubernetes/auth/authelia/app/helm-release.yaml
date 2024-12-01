@@ -65,7 +65,7 @@ spec:
           singleNode: true
         backups:
           enabled: true
-          credentials: minio
+          credentials: s3
         recovery:
           method: object_store
           credentials: s3
