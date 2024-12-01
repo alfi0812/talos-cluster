@@ -77,11 +77,14 @@ spec:
           backups:
             enabled: true
             credentials: minio
-            compression:
-              enabled: true
           recovery:
-            method: object_store
             credentials: minio
+            scheduledBackups:
+            - name: test
+              schedule: "*/15 * * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
       workload:
         main:
           podSpec:
