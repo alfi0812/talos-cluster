@@ -78,7 +78,7 @@ spec:
             enabled: true
             credentials: minio
             compression:
-              enabled: false
+              enabled: true
           recovery:
             method: object_store
             credentials: s3
