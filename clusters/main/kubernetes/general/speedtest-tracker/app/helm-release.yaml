@@ -63,7 +63,7 @@ spec:
           volsync:
           - name: config
             type: restic
-            credentials: s3
+            credentials: minio
             dest:
               enabled: true
             src:
