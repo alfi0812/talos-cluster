@@ -62,7 +62,7 @@ spec:
             src:
               enabled: true
               trigger:
-                schedule: "0 3 * * *"
+                schedule: 30 1 * * *
       cnpg:
         main:
           cluster:

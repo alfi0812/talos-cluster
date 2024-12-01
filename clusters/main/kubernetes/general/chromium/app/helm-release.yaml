@@ -70,7 +70,7 @@ spec:
             credentials: minio
             dest:
               enabled: true
-              cacheCapacity: 10Gi
             src:
               enabled: true
-              cacheCapacity: 10Gi
+              trigger:
+                schedule: 10 0 * * *

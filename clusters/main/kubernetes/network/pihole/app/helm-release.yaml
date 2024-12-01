@@ -79,7 +79,7 @@ spec:
           src:
             enabled: true
             trigger:
-              schedule: 5 3 * * *
+              schedule: 20 1 * * *
       dnsmasq:
         volsync:
         - name: dnsmasq
@@ -90,4 +90,4 @@ spec:
           src:
             enabled: true
             trigger:
-              schedule: 5 3 * * *
+              schedule: 20 1 * * *

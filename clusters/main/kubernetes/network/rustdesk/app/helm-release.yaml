@@ -56,7 +56,7 @@ spec:
             src:
               enabled: true
               trigger:
-                schedule: 0 3 * * *
+                schedule: 20 1 * * *
       service:
         main:
           loadBalancerIP: ${RUSTDESK_IP}

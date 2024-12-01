@@ -82,8 +82,8 @@ spec:
             type: restic
             credentials: minio
             dest:
-              cacheCapacity: 10Gi
               enabled: true
             src:
-              cacheCapacity: 10Gi
               enabled: true
+              trigger:
+                schedule: 10 0 * * *

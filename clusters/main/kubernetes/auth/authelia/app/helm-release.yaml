@@ -79,7 +79,7 @@ spec:
             src:
               enabled: true
               trigger:
-                schedule: 5 0 * * *
+                schedule: 10 0 * * *
     workload:
       main:
         replicas: 1
