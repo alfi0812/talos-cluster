@@ -78,11 +78,11 @@ spec:
             enabled: true
             credentials: minio
             scheduledBackups:
-            - name: test
-              schedule: "*/15 * * * *"
-              backupOwnerReference: self
-              immediate: true
-              suspend: false
+              - name: test
+                schedule: "*/15 * * * *"
+                backupOwnerReference: self
+                immediate: true
+                suspend: false
           recovery:
             credentials: minio
       workload:
