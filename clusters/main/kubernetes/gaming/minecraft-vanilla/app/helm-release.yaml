@@ -91,6 +91,7 @@ spec:
                   OVERRIDE_SERVER_PROPERTIES: false
                   RCON_PASSWORD: ${MINECRAFT_PASSWORD}
                   TYPE: PAPER
+                  VERSION: 1.21.1
                   USE_AIKAR_FLAGS: false
                   USE_FLARE_FLAGS: false
                   USE_SIMD_FLAGS: false
