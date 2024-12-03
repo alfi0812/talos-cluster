@@ -48,7 +48,7 @@ spec:
               entrypoints:
               - websecure
               middlewares:
-              - name: realIP
+              - name: real-ip
                 namespace: traefik
             certManager:
               enabled: true
