@@ -1,0 +1,122 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: nextcloud
+    namespace: nextcloud
+spec:
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: nextcloud
+            version: 32.2.12
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    timeout: 20m
+    values:
+      global:
+        stopAll: false
+      credentials:
+        minio:
+          type: s3
+          url: "${S3_URL_MINIO}"
+          bucket: "${S3_BUCKET}-nextcloud"
+          accessKey: "${S3_ACCESS_KEY}"
+          secretKey: "${S3_SECRET_KEY}"
+          encrKey: "${S3_ENCRYPTION_KEY}"
+      ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: nextcloud.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix
+      cnpg:
+        main:
+          cluster:
+            singleNode: true
+          pgVersion: 15
+          mode: recovery
+          backups:
+            enabled: true
+            credentials: minio
+            scheduledBackups:
+              - name: daily-backup
+                schedule: "0 5 0 * * *"
+                backupOwnerReference: self
+                immediate: true
+                suspend: false
+          recovery:
+            method: object_store
+            credentials: minio
+      persistence:
+        config:
+          volsync:
+          - name: config
+            type: restic
+            credentials: minio
+            dest:
+              enabled: true
+            src:
+              enabled: true
+              trigger:
+                schedule: 10 1 * * *
+        data:
+          enabled: true
+          type: nfs
+          path: ${NEXTCLOUD_NFS_PATH}
+          server: ${CONFIG_TRUENAS_IP}
+        html:
+          volsync:
+          - name: html
+            type: restic
+            credentials: minio
+            dest:
+              enabled: true
+            src:
+              enabled: true
+              trigger:
+                schedule: 20 1 * * *
+      nextcloud:
+        collabora:
+          enabled: true
+          password: "${NEXTCLOUD_PASSWORD}"
+        credentials:
+          initialAdminPassword: "${NEXTCLOUD_PASSWORD}"
+          initialAdminUser: "${NEXTCLOUD_USER}"
+        general:
+          accessIP: ${TRAEFIK_IP}
+          default_phone_region: DE
+        previews:
+          providers:
+          - BMP
+          - GIF
+          - JPEG
+          - Krita
+          - MarkDown
+          - MP3
+          - OpenDocument
+          - PNG
+          - TXT
+          - XBitmap

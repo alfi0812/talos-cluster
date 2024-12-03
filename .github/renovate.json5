@@ -1,0 +1,47 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "docker:enableMajor",
+    "replacements:k8s-registry-move",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":timezone(Europe/Berlin)",
+    "github>alfi0812/talos-cluster//.github/renovate/allowedVersions.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/autoMerge.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/commitMessage.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/customManagers.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/groups.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/labels.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/packageRules.json5",
+    "github>alfi0812/talos-cluster//.github/renovate/semanticCommits.json5"
+  ],
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
+  //"onboarding": false,
+  //"requireConfig": "ignored",
+  "schedule": ["before 06:00 AM"],
+  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
+  "flux": {
+    "fileMatch": [
+      "(^|/)clusters/.+\\.ya?ml$",
+      "(^|/)repositories/.+\\.ya?ml$",
+      "(^|/)kubernetes/.+\\.ya?ml$"
+    ]
+  },
+  "helm-values": {
+    "fileMatch": [
+      "(^|/)clusters/.+\\-values\\.ya?ml$",      // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in clusters
+      "(^|/)kubernetes/.+\\-values\\.ya?ml$",    // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in kubernetes
+      "(^|/)repositories/.+\\-values\\.ya?ml$",  // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in repositories
+      "(^|/)charts/.+\\-values\\.ya?ml$"         // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in charts
+    ]
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
+    ]
+  }
+}

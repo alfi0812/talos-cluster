@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - hastebin/ks.yaml
+  - vaultwarden/ks.yaml
+  - kitchenowl/ks.yaml
+  - chromium/ks.yaml
+  - code-server/ks.yaml
+  - dashdot/ks.yaml
+  - homepage/ks.yaml
+  - it-tools/ks.yaml
+  - snippet-box/ks.yaml
+  - speedtest-tracker/ks.yaml
+  - synctube/ks.yaml
+  - nextcloud/ks.yaml
+  - uptime-kuma/ks.yaml
+  - littlelink/ks.yaml

@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: littlelink
+    namespace: littlelink
+spec:
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: littlelink
+            version: 15.2.4
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    values:
+      ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+          hosts:
+            - host: ${DOMAIN_0}
+              paths:
+              - path: /
+                pathType: Prefix
+            - host: www.${DOMAIN_0}
+              paths:
+              - path: /
+                pathType: Prefix
+      littlelink:
+        meta_title: "Alfi0812"
+        meta_description: "Alfi0812's Link page"
+        meta_author: "Alfi0812"
+        theme: "Dark"
+        bio: "Bachelor of Engineering in Electrical Engineering"
+        favicon_url: "https://avatars.githubusercontent.com/u/43101280?s=400&u=aa7de93e8d79ad2bbd3fd7da643bb106e2017ba1&v=4"
+        avatar_url: "https://avatars.githubusercontent.com/u/43101280?s=400&u=aa7de93e8d79ad2bbd3fd7da643bb106e2017ba1&v=4"
+        avatar_2x_url: "https://avatars.githubusercontent.com/u/43101280?s=400&u=aa7de93e8d79ad2bbd3fd7da643bb106e2017ba1&v=4"
+        avatar_alt: "alfi0812 profile pic"
+        name: "Alfi0812"
+        github: "https://github.com/alfi0812"
+        twitter: "https://x.com/alfi0812"
+        instagram: ""
+        youtube: ""
+        twitch: ""
+        discord: "https://discordapp.com/users/209056319905202176"
+        tiktok: ""
+        kit: ""
+        footer: "Alfi0812 © 2024"
+        email: "admin@alfi0812.de"
+        email_text: "Email"

@@ -1,0 +1,127 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authelia
+  namespace: authelia
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: authelia
+      version: 25.5.4
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    credentials:
+      minio:
+          type: s3
+          url: "${S3_URL_MINIO}"
+          bucket: "${S3_BUCKET}-authelia"
+          accessKey: "${S3_ACCESS_KEY}"
+          secretKey: "${S3_SECRET_KEY}"
+          encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: auth.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix
+    cnpg:
+      main:
+        cluster:
+          singleNode: true
+        backups:
+          enabled: true
+          credentials: minio
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "0 5 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
+        recovery:
+          method: object_store
+          credentials: minio
+    persistence:
+      config:
+        volsync:
+          - name: config
+            type: restic
+            credentials: minio
+            dest:
+              enabled: true
+            src:
+              enabled: true
+              trigger:
+                schedule: 10 0 * * *
+    workload:
+      main:
+        replicas: 1
+        strategy: RollingUpdate
+    theme: dark
+    totp:
+      issuer: ${DOMAIN_1}
+    notifier:
+      filesystem:
+        enabled: false
+      smtp:
+        enabled: true
+        host: ${SMTP_HOST}
+        plain_password: ${SMTP_PASSWORD_AUTHELIA}
+        port: 587
+        sender: auth@${DOMAIN_1}
+        startup_check_address: auth@${DOMAIN_1}
+        username: ${SMTP_USER}
+    domain: ${DOMAIN_1}
+    authentication_backend:
+      file:
+        enabled: false
+      ldap:
+        additional_groups_dn: ou=groups
+        additional_users_dn: ou=people
+        base_dn: DC=${DN},DC=${DC}
+        enabled: true
+        groups_filter: (member={dn})
+        implementation: custom
+        plain_password: ${AUTHELIA_PASSWORD}
+        url: ldap://lldap-ldap.lldap.svc.cluster.local:3890
+        user: uid=admin,ou=people,dc=${DN},dc=${DC}
+        users_filter: (&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))
+    access_control:
+      rules:
+      - domain:
+        - ${DOMAIN_1}
+        - '*.${DOMAIN_1}'
+        domain_regex: []
+        networks: []
+        policy: two_factor
+        resources: []
+        subject:
+        - group:admin
+

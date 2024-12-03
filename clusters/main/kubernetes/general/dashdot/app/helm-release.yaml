@@ -1,0 +1,82 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: dashdot
+    namespace: dashdot
+spec:
+    interval: 5m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: dashdot
+            version: 10.3.2
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    values:
+      image:
+        repository: mauricenino/dashdot
+        tag: nvidia@sha256:c319fcf726622b5b4a31e63f8421db36a606e0d694bdac3b10fdb5e21dbbb9d6
+        pullPolicy: IfNotPresent
+      ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: dash.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+      workload:
+        main:
+          podSpec:
+            runtimeClassName: "nvidia"
+            containers:
+              main:
+                env:
+                  DASHDOT_ACCEPT_OOKLA_EULA: true
+                  DASHDOT_ALWAYS_SHOW_PERCENTAGES: true
+                  DASHDOT_CPU_DATAPOINTS: '20'
+                  DASHDOT_CPU_LABEL_LIST: brand,model,cores,threads,frequency
+                  DASHDOT_CPU_POLL_INTERVAL: '1000'
+                  DASHDOT_CPU_WIDGET_GROW: '4'
+                  DASHDOT_CPU_WIDGET_MIN_WIDTH: '500'
+                  DASHDOT_DISABLE_INTEGRATIONS: false
+                  DASHDOT_ENABLE_CPU_TEMPS: true
+                  DASHDOT_FS_DEVICE_FILTER: ''
+                  DASHDOT_FS_TYPE_FILTER: cifs,9p,fuse.rclone,fuse.mergerfs
+                  DASHDOT_FS_VIRTUAL_MOUNTS: ''
+                  DASHDOT_OS_LABEL_LIST: os,arch,up_since
+                  DASHDOT_OS_WIDGET_GROW: '1.5'
+                  DASHDOT_OS_WIDGET_MIN_WIDTH: '300'
+                  DASHDOT_PORT: '{{ .Values.service.main.ports.main.port}}'
+                  DASHDOT_SHOW_HOST: true
+                  DASHDOT_USE_IMPERIAL: false
+                  DASHDOT_WIDGET_LIST: os,cpu,ram,network,gpu
+                  cpuwidgetsettings: true
+                  netwidgetsettings: false
+                  oswidgetsettings: true
+                  overridesettings: false
+                  ramwidgetsettings: false
+                  storagewidgetsettings: false

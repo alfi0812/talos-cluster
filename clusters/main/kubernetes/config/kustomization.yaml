@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - external-service-backup/ks.yaml
+  - external-service-fritzbox/ks.yaml
+  - external-service-pikvm/ks.yaml
+  - external-service-repeater/ks.yaml
+  - external-service-truenas/ks.yaml
