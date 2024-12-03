@@ -47,6 +47,9 @@ spec:
               enabled: true
               entrypoints:
               - websecure
+              middlewares:
+              - name: realIP
+                namespace: traefik
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
