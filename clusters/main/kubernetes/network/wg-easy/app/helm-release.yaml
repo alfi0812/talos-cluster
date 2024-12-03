@@ -42,6 +42,7 @@ spec:
       vpn:
         loadBalancerIP: ${WG_EASY_IP}
         type: LoadBalancer
+        externalTrafficPolicy: Local
     ingress:
       main:
         enabled: true
