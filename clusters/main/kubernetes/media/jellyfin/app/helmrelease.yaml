@@ -48,8 +48,6 @@ spec:
               entrypoints:
               - websecure
               middlewares:
-              - name: real-ip
-                namespace: traefik
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
