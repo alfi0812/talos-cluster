@@ -79,7 +79,6 @@ spec:
                 suspend: false
           recovery:
             credentials: minio
-            revision: "1"
       workload:
         main:
           podSpec:
