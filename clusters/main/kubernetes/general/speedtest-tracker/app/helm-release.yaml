@@ -44,8 +44,8 @@ spec:
               entrypoints:
               - websecure
             certManager:
-              #enabled: true
-              #certificateIssuer: domain-1-le-prod
+              enabled: true
+              certificateIssuer: domain-1-le-prod
           hosts:
             - host: speedtest.${DOMAIN_1}
               paths:
