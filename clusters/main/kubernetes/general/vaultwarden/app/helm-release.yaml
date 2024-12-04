@@ -93,7 +93,6 @@ spec:
         main:
           cluster:
             singleNode: true
-          mode: recovery
           backups:
             enabled: true
             credentials: minio
