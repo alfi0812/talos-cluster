@@ -13,5 +13,5 @@ resources:
   - littlelink/ks.yaml
   - speedtest-tracker/ks.yaml
   - vaultwarden/ks.yaml
-  #- kitchenowl/ks.yaml
+  - kitchenowl/ks.yaml
   #- nextcloud/ks.yaml
