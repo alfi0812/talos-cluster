@@ -12,6 +12,6 @@ resources:
   - uptime-kuma/ks.yaml
   - littlelink/ks.yaml
   #- nextcloud/ks.yaml
-  #- speedtest-tracker/ks.yaml
+  - speedtest-tracker/ks.yaml
   - vaultwarden/ks.yaml
   #- kitchenowl/ks.yaml
