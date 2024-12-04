@@ -64,8 +64,8 @@ spec:
               middlewares:
               - name: vaultwarden
                 namespace: traefik
-              - name: auth
-                namespace: traefik
+              #- name: auth
+              #  namespace: traefik
               - name: real-ip
                 namespace: traefik
               enableFixedMiddlewares: true
