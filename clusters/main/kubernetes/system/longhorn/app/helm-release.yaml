@@ -30,6 +30,7 @@ spec:
         defaultReplicaCount: 1
         # Overprovisioning might be needed when using volsync
         storageOverProvisioningPercentage: 10000000
+        storageReservedPercentageForDefaultDisk: 10
         # v2DataEngine: true
       persistence:
         # Set to false to pick another CSI as default
