@@ -25,11 +25,13 @@ spec:
         remediation:
             retries: 3
     values:
+      persistence:
+        defaultClassReplicaCount: 1 
       defaultSettings:
         # Increase to 3 for a multi-node cluster
         defaultReplicaCount: 1
         # Overprovisioning might be needed when using volsync
-        storageOverProvisioningPercentage: 10000000
+        storageOverProvisioningPercentage: 1000000000
         storageReservedPercentageForDefaultDisk: 10
         # v2DataEngine: true
       persistence:
