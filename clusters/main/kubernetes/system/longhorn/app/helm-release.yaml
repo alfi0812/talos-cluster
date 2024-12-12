@@ -32,8 +32,15 @@ spec:
             storageOverProvisioningPercentage: 100000
             storageReservedPercentageForDefaultDisk: 10
             # v2DataEngine: true
+        csi:
+            attacherReplicaCount: 1
+            provisionerReplicaCount: 1
+            resizerReplicaCount: 1
+            snapshotterReplicaCount: 1
         persistence:
             # Set to false to pick another CSI as default
             defaultClass: true
             # Increase to 3 for a multi-node cluster
             defaultClassReplicaCount: 1
+        longhornUI:
+            replicas: 1
