@@ -32,7 +32,7 @@ spec:
       minio:
           type: s3
           url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}-{{ .Chart.Name }}"
+          bucket: "${S3_BUCKET}-authelia"
           accessKey: "${S3_ACCESS_KEY}"
           secretKey: "${S3_SECRET_KEY}"
           encrKey: "${S3_ENCRYPTION_KEY}"
