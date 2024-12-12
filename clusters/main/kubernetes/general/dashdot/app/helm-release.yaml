@@ -27,7 +27,7 @@ spec:
     values:
       image:
         repository: ghcr.io/mauricenino/dashdot
-        tag: nvidia-5.9.0@sha256:c319fcf726622b5b4a31e63f8421db36a606e0d694bdac3b10fdb5e21dbbb9d6
+        tag: nvidia-5.8.4@sha256:c4d6cc6fd11b504a3e356d30ad76f68e1ce99df9cc6a24821db738f9c1e46476
         pullPolicy: IfNotPresent
       ingress:
         main:
