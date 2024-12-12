@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+  annotations:
+      cert-manager.io/cluster-issuer: domain-1-le-prod
+      cert-manager.io/private-key-rotation-policy: Always
+      traefik.frontend.passHostHeader: "false"
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.middlewares: traefik-chain-basic@kubernetescrd
+      traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - host: longhorn.${DOMAIN_1}
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: longhorn-frontend
+            port:
+              number: 80
+  tls:
+    - hosts:
+      - longhorn.${DOMAIN_1}
+      secretName: longhorn-tls-0
+status:
+    loadBalancer:
+      ingress:
+      - ip: ${TRAEFIK_IP}
