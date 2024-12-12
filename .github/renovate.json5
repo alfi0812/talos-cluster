@@ -22,26 +22,22 @@
   //"onboarding": false,
   //"requireConfig": "ignored",
   "schedule": ["before 06:00 AM"],
-  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
+  "ignorePaths": ["**/*.sops.*"],
   "flux": {
     "fileMatch": [
-      "(^|/)clusters/.+\\.ya?ml$",
-      "(^|/)repositories/.+\\.ya?ml$",
-      "(^|/)kubernetes/.+\\.ya?ml$"
+      "(^|/)clusters/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)repositories/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
     ]
   },
   "helm-values": {
     "fileMatch": [
-      "(^|/)clusters/.+\\-values\\.ya?ml$",      // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in clusters
-      "(^|/)kubernetes/.+\\-values\\.ya?ml$",    // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in kubernetes
-      "(^|/)repositories/.+\\-values\\.ya?ml$",  // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in repositories
-      "(^|/)charts/.+\\-values\\.ya?ml$"         // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in charts
+      "(^|/)clusters/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)repositories/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$" 
     ]
   },
   "kubernetes": {
-    "fileMatch": [
-      "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$",
-      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
-    ]
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
   }
 }
