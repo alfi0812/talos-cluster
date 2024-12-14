@@ -39,8 +39,8 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        paths: ["clusters/main/kubernetes"]
-        resources: ["kustomization"] 
+        paths: ["clusters/main/kubernetes", "repositories"]
+        resources: ["helmrelease", "kustomization"]
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
