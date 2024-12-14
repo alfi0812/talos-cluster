@@ -12,7 +12,7 @@ kubeconform_args=(
     "-strict"
     "-ignore-missing-schemas"
     "-skip"
-    "Secret"
+    "Secret,ConfigMap"
     "-schema-location"
     "default"
     "-schema-location"
