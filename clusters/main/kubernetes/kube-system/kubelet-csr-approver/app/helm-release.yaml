@@ -15,4 +15,8 @@ spec:
                 name: truecharts
                 namespace: flux-system
             interval: 30m
-    values: {}
+    values:
+        workload:
+            main:
+                enabled: true
+                replicas: 1
