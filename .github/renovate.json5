@@ -1,43 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "schedule": ["before 06:00 AM"],
   "extends": [
     "config:recommended",
-    "docker:enableMajor",
-    "replacements:k8s-registry-move",
-    ":disableRateLimiting",
-    ":dependencyDashboard",
-    ":semanticCommits",
-    ":timezone(Europe/Berlin)",
-    "github>alfi0812/talos-cluster//.github/renovate/allowedVersions.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/autoMerge.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/commitMessage.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/customManagers.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/groups.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/labels.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/packageRules.json5",
-    "github>alfi0812/talos-cluster//.github/renovate/semanticCommits.json5"
-  ],
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
-  //"onboarding": false,
-  //"requireConfig": "ignored",
-  "schedule": ["before 06:00 AM"],
-  "ignorePaths": ["**/*.sops.*"],
-  "flux": {
-    "fileMatch": [
-      "(^|/)clusters/.+\\.ya?ml(?:\\.j2)?$",
-      "(^|/)repositories/.+\\.ya?ml(?:\\.j2)?$",
-      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
-    ]
-  },
-  "helm-values": {
-    "fileMatch": [
-      "(^|/)clusters/.+\\.ya?ml(?:\\.j2)?$",
-      "(^|/)repositories/.+\\.ya?ml(?:\\.j2)?$",
-      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$" 
-    ]
-  },
-  "kubernetes": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
-  }
+    "github>truecharts/public//.github/renovate/main.json5",
+    "github>alfi0812/talos-cluster//.github/special_talos.json5"
+  ]
 }
