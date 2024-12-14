@@ -4,6 +4,6 @@
   "extends": [
     "config:recommended",
     "github>truecharts/public//.github/renovate/main.json5",
-    "github>alfi0812/talos-cluster//.github/special_talos.json5"
+    "github>craigers521/mycluster//.github/special_talos.json5"
   ]
 }
