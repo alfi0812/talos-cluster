@@ -2,7 +2,8 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
 "major": {
   "enabled": true,
-  "automerge": false
+  "automerge": false,
+  "dependencyDashboardApproval": false
 },
 "ignore": [
   // Add any paths or patterns to ignore specific minor updates, if necessary
