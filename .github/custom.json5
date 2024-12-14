@@ -1,5 +1,11 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "major": {
+    "enabled": true,
+    "automerge": false,
+    "dependencyDashboardApproval": false
+    },
+    "ignore": [],
     "packageRules": [
       {
         "description": ["Block automerge for Kubelet and Talos version Patch"],
@@ -18,9 +24,10 @@
       {
         "description": ["Block automerge for Kubelet and Talos version Major"],
         "matchUpdateTypes": ["major"],
-        "dependencyDashboardApproval": true,
+        "dependencyDashboardApproval": false,
         "matchPackageNames": ["ghcr.io/siderolabs/kubelet", "ghcr.io/siderolabs/installer"],
         "labels": ["type/major", "system-upgrade"]
       }
     ]
-  }
+
+}
