@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: littlelink
-            version: 14.0.13
+            version: 14.0.10f
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
