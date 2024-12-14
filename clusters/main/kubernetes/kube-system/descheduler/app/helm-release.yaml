@@ -29,7 +29,9 @@ spec:
     uninstall:
         keepHistory: false
     values:
-        replicas: 1
+        leaderElection:
+            enabled: true
+        replicas: 2
         kind: Deployment
         deschedulerPolicyAPIVersion: descheduler/v1alpha2
         deschedulerPolicy:
