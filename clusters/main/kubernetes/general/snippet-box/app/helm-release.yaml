@@ -61,3 +61,5 @@ spec:
               enabled: true
               trigger:
                 schedule: 30 1 * * *
+      test:
+        test-value: true
