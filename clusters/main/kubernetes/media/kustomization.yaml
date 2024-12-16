@@ -19,3 +19,4 @@ resources:
   - sonarr/ks.yaml
   - sonarr-anime/ks.yaml
   - whisparr/ks.yaml
+  - mylar/ks.yaml
