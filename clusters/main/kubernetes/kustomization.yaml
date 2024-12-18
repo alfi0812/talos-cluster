@@ -8,7 +8,6 @@ resources:
   - kube-system
   - system
   - media
-  - auth
   - general
   - gaming
   - apps

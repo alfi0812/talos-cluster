@@ -54,10 +54,8 @@ spec:
                   pathType: Prefix
     cnpg:
       main:
-        hibernate: true
         cluster:
           singleNode: true
-          instances: 1
         backups:
           enabled: true
           credentials: minio

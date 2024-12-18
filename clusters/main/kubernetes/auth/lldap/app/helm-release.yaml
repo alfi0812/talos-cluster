@@ -76,9 +76,7 @@ spec:
                 LLDAP_key_file: /data/private_key
     cnpg:
       main:
-        hibernate: true
         cluster:
-          instances: 1
           singleNode: true
         backups:
           enabled: true
