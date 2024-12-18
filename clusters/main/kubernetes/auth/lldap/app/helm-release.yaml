@@ -28,6 +28,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+      stopAll: true
     credentials:
       minio:
         type: s3
