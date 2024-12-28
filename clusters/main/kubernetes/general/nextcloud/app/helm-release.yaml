@@ -40,7 +40,6 @@ spec:
         repository: docker.io/collabora/code
         pullPolicy: IfNotPresent
         tag: 24.04.11.1.1@sha256:d5b2d6e54f074d8d936a21dccd7bff258446443733e1fa87a4171e51ecd974dc
-
       credentials:
         minio:
           type: s3
