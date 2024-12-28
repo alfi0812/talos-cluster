@@ -35,7 +35,7 @@ spec:
       nginxImage:
         repository: docker.io/nginxinc/nginx-unprivileged
         pullPolicy: IfNotPresent
-        tag: 1.27.2@sha256:d7f8c13955c20633fc9b7c34a88b973d0727a272f620e9f53d20eb39c3868080
+        tag: 1.27.3@sha256:4cc7a90e2701c4e5c1695be4c99db435e2d7227b6039887f5ec1af9ecf9923e8
       collaboraImage:
         repository: docker.io/collabora/code
         pullPolicy: IfNotPresent
