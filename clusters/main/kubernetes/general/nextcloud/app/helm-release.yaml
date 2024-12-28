@@ -28,6 +28,19 @@ spec:
     values:
       global:
         stopAll: false
+      image:
+        repository: tccr.io/tccr/nextcloud-fpm
+        pullPolicy: IfNotPresent
+        tag: v30.0.0@sha256:e22c3824a51dfc8004664588df1af9884ef514bf2f943737f3f118b567004117
+      nginxImage:
+        repository: docker.io/nginxinc/nginx-unprivileged
+        pullPolicy: IfNotPresent
+        tag: 1.27.2@sha256:d7f8c13955c20633fc9b7c34a88b973d0727a272f620e9f53d20eb39c3868080
+      collaboraImage:
+        repository: docker.io/collabora/code
+        pullPolicy: IfNotPresent
+        tag: 24.04.11.1.1@sha256:d5b2d6e54f074d8d936a21dccd7bff258446443733e1fa87a4171e51ecd974dc
+
       credentials:
         minio:
           type: s3
