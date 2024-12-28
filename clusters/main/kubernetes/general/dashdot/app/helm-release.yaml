@@ -4,12 +4,12 @@ metadata:
     name: dashdot
     namespace: dashdot
 spec:
-    interval: 5m
+    interval: 10m
     chart:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: dashdot
-            version: 10.3.2
+            version: 10.4.0
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
