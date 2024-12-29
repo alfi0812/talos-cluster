@@ -35,7 +35,6 @@ spec:
           encrKey: "${S3_ENCRYPTION_KEY}"
       cloudflareddns:
         api_token: ${CLOUDFLARE_TOKEN}
-        detect_mode: dig-whoami.cloudflare
         host_zone_record:
         - domain: minecraft.${DOMAIN_0}
           record: A
@@ -43,8 +42,6 @@ spec:
         - domain: wireguard.${DOMAIN_1}
           record: A
           zone: ${ZONE_1}
-        interval: 300
-        log_level: 3
       persistence:
         config:
           volsync:
