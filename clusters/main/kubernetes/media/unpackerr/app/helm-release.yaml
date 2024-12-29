@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: unpackerr
-            version: 15.4.0
+            version: 15.4.1
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
