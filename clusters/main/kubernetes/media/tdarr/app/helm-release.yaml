@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: tdarr
-            version: 11.11.1
+            version: 11.11.2
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
