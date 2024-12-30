@@ -5,7 +5,7 @@ resources:
   - chromium/ks.yaml
   - code-server/ks.yaml
   - dashdot/ks.yaml
-  #- homepage/ks.yaml
+  - homepage/ks.yaml
   - it-tools/ks.yaml
   - snippet-box/ks.yaml
   - synctube/ks.yaml
