@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: recyclarr
-            version: 12.6.1
+            version: 12.6.2
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
