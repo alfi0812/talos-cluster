@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: mylar
-            version: 15.3.2
+            version: 15.3.3
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
