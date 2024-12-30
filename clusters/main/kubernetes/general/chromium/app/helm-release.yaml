@@ -67,6 +67,8 @@ spec:
           volsync:
           - name: datadir
             type: restic
+            cleanupTempPVC: true
+            cleanupCachePVC: true
             credentials: minio
             dest:
               enabled: true
