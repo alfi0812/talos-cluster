@@ -27,10 +27,6 @@ spec:
     values:
       global:
         stopAll: false
-      image:
-        repository: docker.io/vaultwarden/server
-        pullPolicy: IfNotPresent
-        tag: 1.32.7@sha256:7a0aa23c0947be3582898deb5170ea4359493ed9a76af2badf60a7eb45ac36af
       credentials:
         minio:
           type: s3
