@@ -70,6 +70,8 @@ spec:
           volsync:
           - name: config
             type: restic
+            cleanupTempPVC: true
+            cleanupCachePVC: true
             credentials: minio
             dest:
               enabled: true

@@ -62,6 +62,8 @@ spec:
           volsync:
           - name: config
             type: restic
+            cleanupTempPVC: true
+            cleanupCachePVC: true
             credentials: minio
             dest:
               enabled: true
@@ -73,6 +75,8 @@ spec:
           volsync:
           - name: logs
             type: restic
+            cleanupTempPVC: true
+            cleanupCachePVC: true
             credentials: minio
             dest:
               enabled: true
@@ -84,6 +88,8 @@ spec:
           volsync:
           - name: server
             type: restic
+            cleanupTempPVC: true
+            cleanupCachePVC: true
             credentials: minio
             dest:
               enabled: true
