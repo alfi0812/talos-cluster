@@ -73,6 +73,8 @@ spec:
         volsync:
         - name: config
           type: restic
+          cleanupTempPVC: true
+          cleanupCachePVC: true
           credentials: minio
           dest:
             enabled: true
@@ -84,6 +86,8 @@ spec:
         volsync:
         - name: dnsmasq
           type: restic
+          cleanupTempPVC: true
+          cleanupCachePVC: true
           credentials: minio
           dest:
             enabled: true
