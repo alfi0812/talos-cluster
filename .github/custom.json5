@@ -38,7 +38,7 @@
     "helm-values": {
       "fileMatch": [
         "(^|/)clusters/.+\\.ya?ml$",
-        "(^|/)kubernetes/.+\\-values\\.ya?ml$", 
+        "(^|/)kubernetes/.+\\-values\\.ya?ml$",
         "(^|/)repositories/.+\\-values\\.ya?ml$",
         "(^|/)charts/.+\\-values\\.ya?ml$"
       ]

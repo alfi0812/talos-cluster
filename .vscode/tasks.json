@@ -3,7 +3,7 @@
     "tasks": [
       {
         "label": "Install All Recommended Extensions",
-        "type": "shell",      
+        "type": "shell",
         "command": "jq -r '.recommendations[]' ./.vscode/extensions.json | xargs -n 1 code . --install-extension",
         "runOptions": {
           "runOn": "folderOpen"

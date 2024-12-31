@@ -9,4 +9,4 @@
 - op: add
   path: /machine/sysctls
   value:
-    "net.core.bpf_jit_harden": 1 
+    "net.core.bpf_jit_harden": 1

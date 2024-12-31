@@ -101,4 +101,3 @@ spec:
                   VIEW_DISTANCE: 16
               mcbackup:
                 enabled: false
-

@@ -94,5 +94,3 @@ spec:
                           name: '§cTry again later!'
                           protocol: -1
                         favicon: /icons/server-icon.png
-
-

@@ -105,5 +105,3 @@ spec:
               enabled: true
               trigger:
                 schedule: 20 0 * * *
-
-
