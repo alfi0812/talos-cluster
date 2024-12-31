@@ -34,5 +34,19 @@
         "matchPackagePatterns": ["dashdot"],
         "versioning": "regex:^nvidia\\-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
       }
-    ]
+    ],
+    "docker": {
+      "fileMatch": [
+        "Dockerfile$", // Matches Dockerfile files regardless of their path
+        "docker-compose\\.ya?ml$", // Matches docker-compose files
+        "docker-compose\\.ya?ml\\.j2$", // Matches Jinja2 templated docker-compose files
+        "\\.github/workflows/.*\\.ya?ml$", // Matches all workflow YAML files
+        "\\.github/workflows/.*\\.ya?ml\\.j2$", // Matches Jinja2 templated workflow files
+        "(^|/)clusters/.+\\.ya?ml$" // Matches all Talos cluster YAML files
+      ],
+      "branchPrefix": "renovate/docker-",
+      "enabled": true, // Enable Docker image updates
+      "updateTypes": ["major", "minor", "patch", "digest", "pin"], // Allow updates for all version types
+      "semanticCommitScope": "container"
+    }
 }
