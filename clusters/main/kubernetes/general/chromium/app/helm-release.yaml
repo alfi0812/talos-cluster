@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: chromium
-            version: 7.3.2
+            version: 7.4.0
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
