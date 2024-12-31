@@ -42,7 +42,9 @@
         "docker-compose\\.ya?ml\\.j2$", // Matches Jinja2 templated docker-compose files
         "\\.github/workflows/.*\\.ya?ml$", // Matches all workflow YAML files
         "\\.github/workflows/.*\\.ya?ml\\.j2$", // Matches Jinja2 templated workflow files
-        "(^|/)clusters/.+\\.ya?ml$" // Matches all Talos cluster YAML files
+        "(^|/)clusters/.+\\.ya?ml$",
+        "(^|/)repositories/.+\\.ya?ml$",
+        "(^|/)clustertool/embeded/.+\\.ya?ml$"
       ],
       "branchPrefix": "renovate/docker-",
       "enabled": true, // Enable Docker image updates
