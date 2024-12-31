@@ -37,10 +37,10 @@
     ],
     "helm-values": {
       "fileMatch": [
-        "(^|/)clusters/.+\\.ya?ml$",      // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in clusters
-        "(^|/)kubernetes/.+\\-values\\.ya?ml$",    // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in kubernetes
-        "(^|/)repositories/.+\\-values\\.ya?ml$",  // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in repositories
-        "(^|/)charts/.+\\-values\\.ya?ml$"         // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in charts
-      ]   // Moved to helm-values scope
+        "(^|/)clusters/.+\\.ya?ml$",
+        "(^|/)kubernetes/.+\\-values\\.ya?ml$", 
+        "(^|/)repositories/.+\\-values\\.ya?ml$",
+        "(^|/)charts/.+\\-values\\.ya?ml$"
+      ]
   }
 }
