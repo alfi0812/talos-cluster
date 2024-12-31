@@ -35,20 +35,17 @@
         "versioning": "regex:^nvidia\\-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
       }
     ],
-    "docker": {
+    "helm-values": {
       "fileMatch": [
-        "Dockerfile$", // Matches Dockerfile files regardless of their path
-        "docker-compose\\.ya?ml$", // Matches docker-compose files
-        "docker-compose\\.ya?ml\\.j2$", // Matches Jinja2 templated docker-compose files
-        "\\.github/workflows/.*\\.ya?ml$", // Matches all workflow YAML files
-        "\\.github/workflows/.*\\.ya?ml\\.j2$", // Matches Jinja2 templated workflow files
-        "(^|/)clusters/.+\\.ya?ml$",
-        "(^|/)repositories/.+\\.ya?ml$",
-        "(^|/)clustertool/embeded/.+\\.ya?ml$"
+        "(^|/)clusters/.+\\-values\\.ya?ml$",      // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in clusters
+        "(^|/)kubernetes/.+\\-values\\.ya?ml$",    // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in kubernetes
+        "(^|/)repositories/.+\\-values\\.ya?ml$",  // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in repositories
+        "(^|/)charts/.+\\-values\\.ya?ml$"         // Match *-values.yaml, *-values.yml, or *-values.yaml.j2 in charts
       ],
-      "branchPrefix": "renovate/docker-",
-      "enabled": true, // Enable Docker image updates
+      "enabled": true, // Enable image reference updates in values.yaml
       "updateTypes": ["major", "minor", "patch", "digest", "pin"], // Allow updates for all version types
-      "semanticCommitScope": "container"
-    }
+      "semanticCommitScope": "helm",
+      "bumpVersion": true,
+      "branchPrefix": "renovate/helm-values-"     // Moved to helm-values scope
+  }
 }
