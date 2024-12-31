@@ -17,8 +17,3 @@ fisher install PatrickF1/fzf.fish
 kubectl krew install pv-mounter
 kubectl krew install cnpg
 kubectl krew install df-pv
-
-# Create/update virtual environment
-if ! grep -q "venv /workspaces/" .venv/pyvenv.cfg; then
-    rm -rf .venv
-fi
