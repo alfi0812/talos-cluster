@@ -27,6 +27,12 @@
         "dependencyDashboardApproval": false,
         "matchPackageNames": ["ghcr.io/siderolabs/kubelet", "ghcr.io/siderolabs/installer"],
         "labels": ["type/major", "system-upgrade"]
+      },
+      {
+        "description": ["Custom versioning for dashdot"],
+        "matchDatasources": ["docker"],
+        "matchPackagePatterns": ["dashdot"],
+        "versioning": "regex:^nvidia\\-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
       }
     ],
     "helm-values": {
