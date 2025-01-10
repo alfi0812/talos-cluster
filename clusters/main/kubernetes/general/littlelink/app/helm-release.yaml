@@ -61,6 +61,6 @@ spec:
         discord: "https://discordapp.com/users/209056319905202176"
         tiktok: ""
         kit: ""
-        footer: "{{ now | date "2006" }}"
+        footer: "{{ now | date "20060102150405" | squote }}"
         email: "admin@alfi0812.de"
         email_text: "Email"
