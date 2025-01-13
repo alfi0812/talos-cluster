@@ -76,6 +76,7 @@ spec:
                 LLDAP_key_file: /data/private_key
     cnpg:
       main:
+        mode: recovery
         cluster:
           singleNode: true
         backups:
