@@ -83,3 +83,5 @@ spec:
         main:
           podSpec:
             runtimeClassName: "nvidia"
+      autodiscovery:
+        enabled: true
