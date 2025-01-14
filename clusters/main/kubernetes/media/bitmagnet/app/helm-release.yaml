@@ -61,7 +61,6 @@ spec:
           cluster:
             instances: 1
             singleNode: true
-
       metrics:
         main:
           enabled: false
