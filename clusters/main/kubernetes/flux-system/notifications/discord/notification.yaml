@@ -47,6 +47,9 @@ spec:
       namespace: volsync
     - kind: HelmRelease
       name: "*"
+      namespace: actualserver
+    - kind: HelmRelease
+      name: "*"
       namespace: authelia
     - kind: HelmRelease
       name: "*"
