@@ -55,7 +55,6 @@ spec:
             containers:
               main:
                 env:
-                   DHT_CRAWLER_SAVE_FILES_THRESHOLD: "1000"
                    TMDB_API_KEY: "${TMDB_API}"
       cnpg:
         main:
