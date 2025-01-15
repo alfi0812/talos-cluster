@@ -99,8 +99,6 @@ spec:
                 schedule: 50 0 * * *
         transcode-cache:
           type: "emptyDir"
-          medium: Memory
-          size: 8Gi
         media:
           enabled: true
           existingClaim: media-nfs-pvc

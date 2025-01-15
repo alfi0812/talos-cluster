@@ -72,9 +72,6 @@ spec:
               enabled: true
               trigger:
                 schedule: 30 0 * * *
-        cache:
-          medium: Memory
-          size: 8Gi
         media:
           enabled: true
           existingClaim: media-nfs-pvc
