@@ -43,6 +43,8 @@ spec:
             enabled: false
       alertmanager:
         enabled: false
+      serviceMonitor:
+        enabled: false
       grafana:
         enabled: false
         forceDeployDashboards: false
