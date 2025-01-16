@@ -22,3 +22,7 @@ spec:
     upgrade:
         remediation:
             retries: 3
+    values:
+      metrics:
+        main:
+          enabled: false
