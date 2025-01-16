@@ -29,6 +29,8 @@ spec:
         enabled: true
       prometheusOperator:
         enabled: true
+        serviceMonitor:
+          enabled: false
       ## Everything down here, explicitly disables everything BUT the operator itself
       global:
         rbac:
@@ -42,8 +44,6 @@ spec:
           monitor:
             enabled: false
       alertmanager:
-        enabled: false
-      serviceMonitor:
         enabled: false
       grafana:
         enabled: false
