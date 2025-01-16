@@ -37,6 +37,9 @@ spec:
       main:
         replicas: 1
         strategy: RollingUpdate
+    metrics:
+      main:
+        enabled: false
     service:
       main:
         type: ClusterIP
