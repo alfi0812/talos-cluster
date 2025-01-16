@@ -12,15 +12,6 @@ spec:
   secretRef:
     name: github-webhook-token-secret
   resources:
-    - apiVersion: source.toolkit.fluxcd.io/v1
-      kind: GitRepository
+    - kind: GitRepository
       name: cluster
-      namespace: flux-system
-    - apiVersion: kustomize.toolkit.fluxcd.io/v1
-      kind: Kustomization
-      name: flux-entry-repos
-      namespace: flux-system
-    - apiVersion: kustomize.toolkit.fluxcd.io/v1
-      kind: Kustomization
-      name: flux-entry
       namespace: flux-system
