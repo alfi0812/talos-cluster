@@ -77,4 +77,4 @@ spec:
           mountPath: /Media
       metrics:
         main:
-          enabled: false
+          enabled: true
