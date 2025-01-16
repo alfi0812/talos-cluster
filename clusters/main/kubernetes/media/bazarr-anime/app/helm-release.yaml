@@ -75,3 +75,6 @@ spec:
           enabled: true
           existingClaim: media-nfs-pvc
           mountPath: /Media
+      metrics:
+        main:
+          enabled: true
