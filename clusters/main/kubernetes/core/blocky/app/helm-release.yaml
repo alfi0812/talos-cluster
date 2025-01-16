@@ -67,3 +67,6 @@ spec:
     cnpg:
       main:
         enabled: false
+    metrics:
+      main:
+        enabled: false
