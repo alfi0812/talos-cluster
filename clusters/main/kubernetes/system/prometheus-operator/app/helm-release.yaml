@@ -30,7 +30,7 @@ spec:
       prometheusOperator:
         enabled: true
         serviceMonitor:
-          enabled: false
+          selfMonitor: false
       ## Everything down here, explicitly disables everything BUT the operator itself
       global:
         rbac:
