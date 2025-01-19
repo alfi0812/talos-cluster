@@ -40,7 +40,7 @@ spec:
         open:
           enabled: false
       global:
-        stopAll: true
+        stopAll: false
       credentials:
         minio:
           type: s3
