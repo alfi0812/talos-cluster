@@ -91,10 +91,11 @@ spec:
             cleanupTempPVC: true
             cleanupCachePVC: true
             credentials: minio
-            cacheCapacity: 20Gi
             dest:
+              cacheCapacity: 20Gi
               enabled: true
             src:
+              cacheCapacity: 20Gi
               enabled: true
               trigger:
                 schedule: 50 0 * * *
