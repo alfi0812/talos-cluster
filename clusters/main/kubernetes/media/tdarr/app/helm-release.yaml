@@ -95,7 +95,7 @@ spec:
             dest:
               enabled: true
             src:
-              enabled: true
+              enabled: false
               trigger:
                 schedule: 50 0 * * *
         transcode-cache:
