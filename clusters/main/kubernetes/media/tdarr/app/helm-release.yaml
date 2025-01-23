@@ -91,6 +91,7 @@ spec:
             cleanupTempPVC: true
             cleanupCachePVC: true
             credentials: minio
+            cacheCapacity: 20Gi
             dest:
               enabled: true
             src:
