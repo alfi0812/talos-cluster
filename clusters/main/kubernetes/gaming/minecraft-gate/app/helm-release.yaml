@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: minecraft-gate
-            version: 1.2.2
+            version: 1.2.5
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
