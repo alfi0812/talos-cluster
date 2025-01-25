@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: rustdesk
-            version: 1.2.0
+            version: 1.2.1
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
