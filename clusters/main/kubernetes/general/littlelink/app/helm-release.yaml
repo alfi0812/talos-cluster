@@ -60,7 +60,6 @@ spec:
                   BIO: "Master of Science in Electrical Engineering and Information Technology"
                   GITHUB: "https://github.com/alfi0812"
                   TWITTER: "https://x.com/alfi0812"
-                  INSTAGRAM: ""
                   DISCORD: "https://discordapp.com/users/209056319905202176"
                   FOOTER: 'Alfi0812 © {{ now | date "2006" }}'
                   EMAIL: "admin@alfi0812.de"
