@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: code-server
-            version: 13.11.0
+            version: 13.11.1
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
