@@ -83,7 +83,7 @@ spec:
                           name: '§cTry again later!'
                           protocol: -1
                         favicon: /icons/server-icon.png
-                    - host: [tcpshield.${DOMAIN_0}, ${DOMAIN_0}]
+                    - host: [tcpshield.${DOMAIN_0}, ${DOMAIN_0}, *]
                       backend: minecraft-vanilla-minecraft-java.minecraft.svc.cluster.local:25565
                       cachePingTTL: -1s
                       fallback:
