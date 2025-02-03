@@ -76,12 +76,14 @@ spec:
           enabled: true
           existingClaim: media-nfs-pvc
           mountPath: /Media
-      resources:
-        limits:
-          nvidia.com/gpu: 1
       workload:
         main:
           podSpec:
             runtimeClassName: "nvidia"
+            containers:
+              main:
+                resources:
+                  limits:
+                    nvidia.com/gpu: 1
       autodiscovery:
         enabled: true
