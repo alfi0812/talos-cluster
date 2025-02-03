@@ -1,0 +1,72 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: glances
+    namespace: glances
+spec:
+    interval: 10m
+    chart:
+        spec:
+            # renovate: registryUrl=https://charts.truechartsoci.org
+            chart: app-template
+            version: 14.5.2
+            sourceRef:
+                kind: HelmRepository
+                name: truecharts
+                namespace: flux-system
+            interval: 5m
+    install:
+        createNamespace: true
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    upgrade:
+        crds: CreateReplace
+        remediation:
+            retries: 3
+    values:
+      image:
+        repository: nicolargo/glances
+        pullPolicy: IfNotPresent
+        tag: ubuntu-4.3.0.8-full
+      workload:
+        main:
+          podSpec:
+            # Needed for Running Tasks
+            hostPID: true
+            # Needed for Host Network Stats
+            hostNetwork: true
+            runtimeClassName: "nvidia"
+            containers:
+              main:
+                env:
+                  GLANCES_OPT: "-w -p {{ .Values.service.main.ports.main.port }}"
+      service:
+        main:
+          ports:
+            main:
+              port: 61208
+      securityContext:
+        container:
+          PUID: 1000
+          runAsGroup: 1000
+          runAsUser: 1000
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+      ingress:
+        main:
+          enabled: true
+          integrations:
+            traefik:
+              enabled: true
+              entrypoints:
+              - websecure
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: glances.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix

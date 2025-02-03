@@ -16,3 +16,4 @@ resources:
   - kitchenowl/ks.yaml
   - nextcloud/ks.yaml
   - actualserver/ks.yaml
+  - glances/ks.yaml
