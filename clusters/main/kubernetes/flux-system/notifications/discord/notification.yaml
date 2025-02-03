@@ -92,6 +92,9 @@ spec:
       namespace: generic-device-plugin
     - kind: HelmRelease
       name: "*"
+      namespace: glances
+    - kind: HelmRelease
+      name: "*"
       namespace: hastebin
     - kind: HelmRelease
       name: "*"
