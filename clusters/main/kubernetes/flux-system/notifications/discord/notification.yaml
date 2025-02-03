@@ -77,9 +77,6 @@ spec:
       namespace: code-server
     - kind: HelmRelease
       name: "*"
-      namespace: dashdot
-    - kind: HelmRelease
-      name: "*"
       namespace: default
     - kind: HelmRelease
       name: "*"
