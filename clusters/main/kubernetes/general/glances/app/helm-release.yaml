@@ -33,7 +33,7 @@ spec:
         main:
           podSpec:
             # Needed for Running Tasks
-            # hostPID: true
+            hostPID: true
             # Needed for Host Network Stats
             hostNetwork: true
             runtimeClassName: "nvidia"
