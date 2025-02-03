@@ -25,6 +25,8 @@ spec:
         remediation:
             retries: 3
     values:
+      image:
+        tag: latest@sha256:51e8638867e5821812cd1b4c6f3cbda7ed7dda813881516e416b9fd5d18a28e1
       credentials:
         minio:
           type: s3
