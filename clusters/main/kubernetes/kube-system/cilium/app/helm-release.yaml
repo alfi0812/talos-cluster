@@ -13,7 +13,7 @@ spec:
     chart:
         spec:
             chart: cilium
-            version: 1.17.0
+            version: 1.17.1
             sourceRef:
                 kind: HelmRepository
                 name: cilium
@@ -22,7 +22,7 @@ spec:
     timeout: 20m
     maxHistory: 3
     driftDetection:
-      mode: warn
+      mode: enabled
     install:
         remediation:
             retries: 3
