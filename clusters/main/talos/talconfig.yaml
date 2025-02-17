@@ -50,7 +50,7 @@ nodes:
               - siderolabs/nonfree-kmod-nvidia-lts
               - siderolabs/nvidia-container-toolkit-lts
       patches:
-        - "@./patches/gpu.yaml"
+        - "@./patches/nvidia.yaml"
 controlPlane:
     patches:
         - '@./patches/controlplane.yaml'
