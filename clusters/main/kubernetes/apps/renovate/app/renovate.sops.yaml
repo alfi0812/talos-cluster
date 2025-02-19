@@ -4,7 +4,7 @@ metadata:
     name: renovate-config
     namespace: renovate
 data:
-    config.json: ENC[AES256_GCM,data:GPv7m16mGWP953YVPrtkJg3qCiiglOwQS/oWyH8FFWgM/Rsqg1hVQ+Hi5kLkJP4YGOYOuVMfXjADbasul7msCiEsBqHG7pF7w4yQxffOg5yS6QOu4v1Mux0Y6Hd1/DYA7OI=,iv:5fhtcHHGgBFdyn3TJ5Uts4z3M6MjPBWTgic/J7DUJKY=,tag:4XUTa8RVEmFZz7BimzKkLQ==,type:str]
+    config.json: ENC[AES256_GCM,data:fgpm7QLnwbd66EsyL231QfNP8rq7GtQpgbza1Lrhh63KR32/iGJNK8viVaXE9ZBQwPN+TT8atfdztqvOaEZQZSrTzAjPzsp2vNQPFPkqAdvMQ9ZUA86D9ddX+FIaMYCer28=,iv:9fIWIOqr/7qz2sQtOlygnk+ZprvrWFEquMsu5i4X8XA=,tag:Q9yRdFNAbyltjQoIz/ae/g==,type:str]
 sops:
     shamir_threshold: 3
     kms: []
@@ -15,14 +15,14 @@ sops:
         - recipient: age1k6jfsz28cw5hux3pmpc3hlgl5z36jfwns6stn9l6337dgqyegagqc8jpa3
           enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSByMTRETjJiZkxwYjVzOUpq
-            MGlzakFXSUFZOEgyWmVkRVZOMVp5Qm8rcDM0CnprNnBuT3E1dWtTQTcxVWFRMjA1
-            bWpMTXQ5OENpWWhJczV0TWJBdVF5MkUKLS0tIEFFNlFOTEx2Y0xvdUZUb05oWkVL
-            WCtHeWRNOWliOVo5c0ptcndtdnVRY2MKurFEGESHiTcf+C+xyyaxOlKRzCZqlXAU
-            945SjKRABAcmntVHHHv+VfFKzADz1xcndWpZ/CDE6OBWmsZQJlnbeg==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArVkNreFg0VEhlYlJhVER3
+            Uk9FOC9vbCtGamtEWldBeUFrWGoyMnRvblVZCkQ5cWhNb0c5YlBPSFVhY3ZoT0tj
+            dVNyNDFKRmM2OWNUQys4YVFnYjVjTGcKLS0tIGhkTUtHaWhvMmxFM3RFNS9sTUVk
+            ZTdiSzdwTGxZV2xENVd6MW44Z3lPZGsK147ZrAXjgaGADPq0xYgSMCjtzhnXBJCM
+            77fqJGXjfzyLl9VPzw7Yyk7W1U8AOmCegT4fFt6PJRHdWy/dLuXDaQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-02-19T20:19:40Z"
-    mac: ENC[AES256_GCM,data:xGghVqH/ulI0aVFBMu3RW/GyAHx74JzKDtUn7/rJALEbD5WYLoxVsvVd6bvsrYf3Tdsv5VatvKv6qeaeSksg7urrzURhxkpKbcmnFrXVOjL6nY0cnBUSwUw7+5eXRCSVI0xvO9PnqVafT3nbt8L3Wv14twPm1fm74JjNq6UMu6o=,iv:f8w6w4DSOhynFHyL+7oKETxIndzGpUK/YBXUJRkX2Ds=,tag:ShVyuX2rgDBTq3kd9qKP6Q==,type:str]
+    lastmodified: "2025-02-19T21:18:14Z"
+    mac: ENC[AES256_GCM,data:dwHzCQFE89VB/bobr/ed3wIUW0kAEPYbLyvGPYo1X99Xj2ld3hzuL46/nZvuzNRoj0tZlBe1Uusg7lhtPtF0eD5Y6Zdxw/sn9S4TeLXz0kgHOQSxdF2y1EH4iALnEF4xkci9h/kGs5j43jwNM4sPAiHcy80J+mh5oopQIv88sY0=,iv:rncLoK533g+9SIfm63T8McLCMUWBMLdqfPyuzogb1WA=,tag:PqwmCUGpSR2RlCYGEuApTQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.4
