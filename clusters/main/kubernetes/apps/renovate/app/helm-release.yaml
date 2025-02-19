@@ -52,4 +52,20 @@ spec:
           main:
             port: 80
             targetPort: 8080
+    ingress:
+      main:
+        enabled: true
+        integrations:
+          traefik:
+            enabled: true
+            entrypoints:
+            - websecure
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-staging
+        hosts:
+          - host: it.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
     
