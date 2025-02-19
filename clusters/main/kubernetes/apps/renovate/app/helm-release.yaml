@@ -32,6 +32,7 @@ spec:
   values:
     workload:
       main:
+        schedule: "* * * * *"
         podSpec:
           containers:
             main:
