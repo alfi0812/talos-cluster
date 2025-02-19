@@ -41,7 +41,7 @@ spec:
                 # You can set RENOVATE_AUTODISCOVER to true to run Renovate on all repos you have push access to
                 RENOVATE_AUTODISCOVER: 'true'
                 RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
-                RENOVATE_CONFIG_FILE: /config/config.json
+                RENOVATE_CONFIG_FILE: ""
                 LOG_LEVEL: debug
     configmap:
       config:
