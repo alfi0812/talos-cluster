@@ -36,10 +36,10 @@ spec:
           containers:
             main:
               env:
-                GITHUB_COM_TOKEN: '${GITHUB_PAT_TC}'
+                GITHUB_COM_TOKEN: '${RENOVATE_TOKEN}'
                 # You can set RENOVATE_AUTODISCOVER to true to run Renovate on all repos you have push access to
-                RENOVATE_AUTODISCOVER: 'false'
-                RENOVATE_TOKEN: '${GITHUB_PAT_TC}'
+                RENOVATE_AUTODISCOVER: 'true'
+                RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
                 LOG_LEVEL: debug
     configmap:
       config:
