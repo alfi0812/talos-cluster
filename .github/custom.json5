@@ -5,7 +5,7 @@
     "automerge": false,
     "dependencyDashboardApproval": false,
     },
-    "gitAuthor": "ViserionBot <admin@alfi0812.de>",
+    "gitAuthor": "ViserionBot <bot@alfi0812.de>",
     "ignore": [],
     "packageRules": [
       {
