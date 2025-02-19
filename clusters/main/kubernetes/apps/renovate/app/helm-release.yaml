@@ -48,6 +48,5 @@ spec:
         data:
           renovate-config.js: |-
             {
-              "repositories": ["alfi0812/talos-cluster"],
-              "dryRun" : "full"
+              "repositories": ["alfi0812/talos-cluster"], "dryRun" : "full"
             }
