@@ -62,9 +62,9 @@ spec:
             - websecure
           certManager:
             enabled: true
-            certificateIssuer: domain-1-le-staging
+            certificateIssuer: domain-1-le-prod
         hosts:
-          - host: it.${DOMAIN_1}
+          - host: renovate.${DOMAIN_1}
             paths:
               - path: /
                 pathType: Prefix
