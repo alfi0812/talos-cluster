@@ -4,7 +4,7 @@ metadata:
     name: renovate-config
     namespace: renovate
 data:
-    config.json: ENC[AES256_GCM,data:VH0HjGRXzUnwn+2V8sJ2IEuLrv/CjVySkEzi3MWHBSCMk5LZv6fjIBJl0GYpA30=,iv:WLhraYFDk1p/GLOE+nkxzge7V0okhdAUJQVHli//lQ4=,tag:RE3VmcwNwhAicx1jbkZ9Ow==,type:str]
+    config.json: ENC[AES256_GCM,data:GPv7m16mGWP953YVPrtkJg3qCiiglOwQS/oWyH8FFWgM/Rsqg1hVQ+Hi5kLkJP4YGOYOuVMfXjADbasul7msCiEsBqHG7pF7w4yQxffOg5yS6QOu4v1Mux0Y6Hd1/DYA7OI=,iv:5fhtcHHGgBFdyn3TJ5Uts4z3M6MjPBWTgic/J7DUJKY=,tag:4XUTa8RVEmFZz7BimzKkLQ==,type:str]
 sops:
     shamir_threshold: 3
     kms: []
@@ -21,8 +21,8 @@ sops:
             WCtHeWRNOWliOVo5c0ptcndtdnVRY2MKurFEGESHiTcf+C+xyyaxOlKRzCZqlXAU
             945SjKRABAcmntVHHHv+VfFKzADz1xcndWpZ/CDE6OBWmsZQJlnbeg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-02-19T20:02:35Z"
-    mac: ENC[AES256_GCM,data:HDxKAm+Tt4wizFinPJ6Ql3kdr9+6ZxnRBsWw7rVqPcXSHmZJLaNpMTS4McQzB67vFUGj7sbI+I2m0Pg/wLXITLTYjCNZiNxLEOHAf41r7trlXMphyaurYj/3uXvmUt9zygC3uENq5PkmI2s4XXuY2kB5Yj5M14RQJzf0hlmbljM=,iv:PyPewb2vzn2jVnsp3PZ4od920AoPyucCVLyG67pUPqk=,tag:Us8DPKYItPw6E4txEgFbYg==,type:str]
+    lastmodified: "2025-02-19T20:19:40Z"
+    mac: ENC[AES256_GCM,data:xGghVqH/ulI0aVFBMu3RW/GyAHx74JzKDtUn7/rJALEbD5WYLoxVsvVd6bvsrYf3Tdsv5VatvKv6qeaeSksg7urrzURhxkpKbcmnFrXVOjL6nY0cnBUSwUw7+5eXRCSVI0xvO9PnqVafT3nbt8L3Wv14twPm1fm74JjNq6UMu6o=,iv:f8w6w4DSOhynFHyL+7oKETxIndzGpUK/YBXUJRkX2Ds=,tag:ShVyuX2rgDBTq3kd9qKP6Q==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.9.4
