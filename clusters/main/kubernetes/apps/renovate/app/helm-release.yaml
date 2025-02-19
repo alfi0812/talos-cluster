@@ -44,13 +44,10 @@ spec:
                 LOG_LEVEL: debug
     configmap:
       config:
-        enabled: false
+        enabled: true
         data:
           renovate-config.js: |-
             {
               "repositories": ["alfi0812/talos-cluster"],
               "dryRun" : "full"
             }
-        persistence:
-          configmap-vol:
-            enabled: false
