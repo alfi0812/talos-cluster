@@ -44,11 +44,15 @@ spec:
                 LOG_LEVEL: debug
     configmap:
       config:
-        enabled: false
+        enabled: true
+        data:
+          config.json: |-
+            {
+              "repositories": ["truecharts/public"],
+              "dryRun" : "full"
+            }
     persistence:
       configmap-vol:
-        enabled: true
-        type: configmap
-        objectName: renovate-config
-        namespace: renovate
-        expandObjectName: false
+        items:
+          - key: config.json
+            path: config.json
