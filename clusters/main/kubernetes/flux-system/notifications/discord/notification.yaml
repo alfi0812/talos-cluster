@@ -146,6 +146,9 @@ spec:
       namespace: prometheus-operator
     - kind: HelmRelease
       name: "*"
+      namespace: renovate
+    - kind: HelmRelease
+      name: "*"
       namespace: rustdesk
     - kind: HelmRelease
       name: "*"
