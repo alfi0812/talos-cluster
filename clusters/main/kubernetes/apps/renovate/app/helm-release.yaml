@@ -39,7 +39,7 @@ spec:
               env:
                 GITHUB_COM_TOKEN: '${RENOVATE_TOKEN}'
                 # You can set RENOVATE_AUTODISCOVER to true to run Renovate on all repos you have push access to
-                RENOVATE_AUTODISCOVER: 'true'
+                RENOVATE_AUTODISCOVER: 'false'
                 RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
                 LOG_LEVEL: debug
     configmap:
