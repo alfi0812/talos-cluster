@@ -3,7 +3,7 @@
     "major": {
     "enabled": true,
     "automerge": false,
-    "dependencyDashboardApproval": false,
+    "dependencyDashboardApproval": false
     },
     "gitAuthor": "ViserionBot <bot@alfi0812.de>",
     "ignore": [],
