@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: renovate
+      version: 1.12.0
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 20m
+  maxHistory: 3
+  driftDetection:
+    mode: warn
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    workload:
+      main:
+        schedule: "* * * * *"
+        podSpec:
+          containers:
+            main:
+              env:
+                GITHUB_COM_TOKEN: '${RENOVATE_TOKEN}'
+                # You can set RENOVATE_AUTODISCOVER to true to run Renovate on all repos you have push access to
+                RENOVATE_AUTODISCOVER: 'false'
+                RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
+                RENOVATE_CONFIG_FILE: /config/config.json
+                LOG_LEVEL: info
+    configmap:
+      config:
+        enabled: false
+    persistence:
+      configmap-vol:
+        objectName: renovate-config
+        expandObjectName: false
+        items:
+          - key: config.json
+            path: config.json
