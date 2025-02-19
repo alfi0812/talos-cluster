@@ -50,4 +50,5 @@ spec:
         enabled: true
         type: configmap
         objectName: renovate-config
+        namespace: renovate
         expandObjectName: false
