@@ -42,8 +42,6 @@ spec:
                 RENOVATE_AUTODISCOVER: 'false'
                 RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
                 LOG_LEVEL: debug
-                RENOVATE_CONFIG_FILE: /config/renovate-config.js
-                RENOVATE_CACHE_DIR: /tmp/renovate/cache
     persistence:
       configmap-vol:
         enabled: true
