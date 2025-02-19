@@ -44,7 +44,7 @@ spec:
                 LOG_LEVEL: debug
     configmap:
       config:
-        enabled: true
+        enabled: false
         data:
           renovate-config.js: |-
             {
