@@ -3,8 +3,9 @@
     "major": {
     "enabled": true,
     "automerge": false,
-    "dependencyDashboardApproval": false
+    "dependencyDashboardApproval": false,
     },
+    "gitAuthor": "ViserionBot <admin@alfi0812.de>",
     "ignore": [],
     "packageRules": [
       {

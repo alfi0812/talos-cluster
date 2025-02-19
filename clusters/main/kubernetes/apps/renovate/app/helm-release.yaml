@@ -42,7 +42,7 @@ spec:
                 RENOVATE_AUTODISCOVER: 'false'
                 RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
                 RENOVATE_CONFIG_FILE: /config/config.json
-                LOG_LEVEL: debug
+                LOG_LEVEL: info
     configmap:
       config:
         enabled: false
