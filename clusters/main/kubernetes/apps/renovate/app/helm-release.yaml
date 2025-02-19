@@ -42,12 +42,11 @@ spec:
                 RENOVATE_AUTODISCOVER: 'false'
                 RENOVATE_TOKEN: '${RENOVATE_TOKEN}'
                 LOG_LEVEL: debug
-    configmap:
-      config:
+                RENOVATE_CONFIG_FILE: /config/renovate-config.js
+                RENOVATE_CACHE_DIR: /tmp/renovate/cache
+    persistence:
+      configmap-vol:
         enabled: true
-        data:
-          config.json: |-
-            {
-              "repositories": ["orgname/repo","username/repo"],
-              "dryRun" : "full"
-            }
+        type: configmap
+        objectName: renovate-config
+        expandObjectName: false
