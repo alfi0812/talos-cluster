@@ -28,7 +28,7 @@ spec:
       image:
         repository: docker.io/nicolargo/glances
         pullPolicy: IfNotPresent
-        tag: ubuntu-4.3.0.7-full
+        tag: ubuntu-4.3.0.8-full
       workload:
         main:
           podSpec:
