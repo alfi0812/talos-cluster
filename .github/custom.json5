@@ -13,12 +13,6 @@
         "dependencyDashboardApproval": false,
         "matchPackageNames": ["ghcr.io/siderolabs/kubelet", "ghcr.io/siderolabs/installer"],
         "labels": ["type/major", "system-upgrade"]
-      },
-      {
-        "description": ["Custom versioning for glances"],
-        "matchDatasources": ["docker"],
-        "matchPackagePatterns": ["docker.io/nicolargo/glances"],
-        "versioning": "regex:^ubuntu\\-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)-full$"
       }
     ],
     "helm-values": {
