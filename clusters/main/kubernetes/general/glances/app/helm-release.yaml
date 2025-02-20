@@ -8,8 +8,8 @@ spec:
     chart:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
-            chart: app-template
-            version: 14.5.2
+            chart: glances
+            version: 0.0.1
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
@@ -25,10 +25,6 @@ spec:
         remediation:
             retries: 3
     values:
-      image:
-        repository: nicolargo/glances
-        pullPolicy: IfNotPresent
-        tag: ubuntu-4.3.0.8-full
       workload:
         main:
           podSpec:
@@ -37,20 +33,6 @@ spec:
             # Needed for Host Network Stats
             hostNetwork: true
             runtimeClassName: "nvidia"
-            containers:
-              main:
-                env:
-                  GLANCES_OPT: "-w -p {{ .Values.service.main.ports.main.port }}"
-      service:
-        main:
-          ports:
-            main:
-              port: 61208
-      securityContext:
-        container:
-          PUID: 1000
-          runAsGroup: 1000
-          runAsUser: 1000
       resources:
         limits:
           nvidia.com/gpu: 1
