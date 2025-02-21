@@ -59,10 +59,6 @@ spec:
             entrypoints:
             - websecure
             middlewares:
-            - name: pihole-regex
-              namespace: traefik
-            - name: pihole-add
-              namespace: traefik
             - name: auth
               namespace: traefik
           certManager:
