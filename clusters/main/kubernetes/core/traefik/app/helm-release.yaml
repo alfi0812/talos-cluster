@@ -99,7 +99,7 @@ spec:
     middlewares:
       addPrefix:
         - name: pihole-add
-          prefix: /admin
+          prefix: /login
       forwardAuth:
         - address: ${AUTH}
           authRequestHeaders: []
