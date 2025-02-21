@@ -64,6 +64,7 @@ spec:
             - SETPCAP
             - KILL
             - SYS_TIME
+            - SYS_NICE
     ingress:
       main:
         enabled: true
