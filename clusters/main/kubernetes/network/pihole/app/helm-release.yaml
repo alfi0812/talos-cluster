@@ -44,7 +44,7 @@ spec:
           containers:
             main:
               env:
-                FTLCONF_dns_upstreams: 
+                FTLCONF_dns_upstreams: ${BLOCKY_IP}
                 FTLCONF_webserver_api_password: 
     service:
       dns:
