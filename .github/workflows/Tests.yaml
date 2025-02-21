@@ -87,6 +87,7 @@ jobs:
             ```
   automerge-and-approve:
     needs:
+      - labeler
       - kubeconform
       - flux-diff
     name: Automerge and Approve build
