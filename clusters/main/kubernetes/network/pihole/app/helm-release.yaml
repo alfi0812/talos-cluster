@@ -50,6 +50,20 @@ spec:
       dns:
         loadBalancerIP: ${PIHOLE_IP}
         type: LoadBalancer
+    securityContext:
+      container:
+        readOnlyRootFilesystem: false
+        runAsNonRoot: false
+        allowPrivilegeEscalation: true
+        runAsUser: 0
+        runAsGroup: 0
+        capabilities:
+          add:
+            - NET_ADMIN
+            - SETFCAP
+            - SETPCAP
+            - KILL
+            - SYS_TIME
     ingress:
       main:
         enabled: true
@@ -59,8 +73,6 @@ spec:
             entrypoints:
             - websecure
             middlewares:
-            - name: pihole-add
-              namespace: traefik
             - name: auth
               namespace: traefik
           certManager:
