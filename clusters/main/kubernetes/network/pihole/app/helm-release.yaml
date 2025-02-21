@@ -50,16 +50,6 @@ spec:
       dns:
         loadBalancerIP: ${PIHOLE_IP}
         type: LoadBalancer
-    securityContext:
-      container:
-        capabilities:
-          add:
-            - NET_ADMIN
-            - SETFCAP
-            - SETPCAP
-            - KILL
-            - SYS_TIME
-            - SYS_NICE
     ingress:
       main:
         enabled: true
