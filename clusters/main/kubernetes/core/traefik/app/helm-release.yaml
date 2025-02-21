@@ -97,9 +97,6 @@ spec:
               # -- Trust every incoming connection
               insecureMode: false
     middlewares:
-      addPrefix:
-        - name: pihole-add
-          prefix: /login
       forwardAuth:
         - address: ${AUTH}
           authRequestHeaders: []
@@ -118,10 +115,6 @@ spec:
           sourceRange:
             - 192.168.178.0/24
       redirectRegex:
-        - name: pihole-regex
-          permanent: false
-          regex: /admin/$
-          replacement: /
         - name: chrome-regex
           permanent: false
           regex: //$
