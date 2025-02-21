@@ -10,8 +10,6 @@ on:
 
 jobs:
   automerge-and-approve:
-    needs:
-      - labeler
     name: Automerge and Approve Area Github
     runs-on: ubuntu-latest
     steps:
