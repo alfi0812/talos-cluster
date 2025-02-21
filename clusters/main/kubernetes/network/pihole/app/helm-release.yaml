@@ -45,7 +45,7 @@ spec:
             main:
               env:
                 FTLCONF_dns_upstreams: ${BLOCKY_IP}
-                FTLCONF_webserver_api_password: {{quote}}
+                FTLCONF_webserver_api_password: ''
     service:
       dns:
         loadBalancerIP: ${PIHOLE_IP}
