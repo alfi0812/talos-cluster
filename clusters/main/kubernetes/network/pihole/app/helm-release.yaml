@@ -61,6 +61,8 @@ spec:
             middlewares:
             - name: auth
               namespace: traefik
+            - name: pihole
+              namespace: traefik
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
