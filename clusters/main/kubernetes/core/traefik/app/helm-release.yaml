@@ -31,7 +31,7 @@ spec:
     keepHistory: false
   values:
     global:
-      stopAll: true
+      stopAll: false
     defaultCertificate: "domain-0-wildcard"
     workload:
       main:
