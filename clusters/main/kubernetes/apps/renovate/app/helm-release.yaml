@@ -39,6 +39,13 @@ spec:
         podSpec:
           containers:
             main:
+              probes:
+                liveness:
+                  type: tcp
+                readiness:
+                  type: tcp
+                startup:
+                  type: tcp
               env:
                 MEND_RNV_ACCEPT_TOS: y
                 MEND_RNV_LICENSE_KEY: ${RENOVATE_LICENSE_KEY}
@@ -50,8 +57,7 @@ spec:
       main:
         ports:
           main:
-            port: 80
-            type: tcp
+            port: 80     
     ingress:
       main:
         enabled: true
