@@ -8,8 +8,8 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: app-template
-      version: 14.5.2
+      chart: mend-renovate
+      version: 1.0.0
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -30,10 +30,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: ghcr.io/mend/renovate-ce
-      pullPolicy: IfNotPresent
-      tag: 9.4.0@sha256:89dbbcac0071069a1870c3078cfe3cf3974b435be17c76b44dfee8bcbdf522b3
     workload:
       main:
         podSpec:
@@ -42,16 +38,9 @@ spec:
               env:
                 MEND_RNV_ACCEPT_TOS: y
                 MEND_RNV_LICENSE_KEY: ${RENOVATE_LICENSE_KEY}
-                MEND_RNV_PLATFORM: github
                 MEND_RNV_GITHUB_APP_ID: ${RENOVATE_APP_ID}
                 MEND_RNV_GITHUB_APP_KEY: ${RENOVATE_APP_KEY}
                 MEND_RNV_WEBHOOK_SECRET: ${RENOVATE_WEBHOOK_SECRET}
-    service:
-      main:
-        ports:
-          main:
-            port: 80
-            targetPort: 8080
     ingress:
       main:
         enabled: true
