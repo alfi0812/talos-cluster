@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: renovate
+  name: mend-renovate
   namespace: renovate
 spec:
   interval: 15m
@@ -51,6 +51,7 @@ spec:
         ports:
           main:
             port: 80
+            type: tcp
     ingress:
       main:
         enabled: true
