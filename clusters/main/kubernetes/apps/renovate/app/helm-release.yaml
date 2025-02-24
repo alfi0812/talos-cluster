@@ -30,6 +30,12 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    securityContext:
+      container:
+        readOnlyRootFilesystem: false
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
     workload:
       main:
         podSpec:
@@ -38,7 +44,6 @@ spec:
               env:
                 MEND_RNV_ACCEPT_TOS: y
                 MEND_RNV_LICENSE_KEY: ${RENOVATE_LICENSE_KEY}
-                MEND_RNV_PLATFORM: github
                 MEND_RNV_GITHUB_APP_ID: ${RENOVATE_APP_ID}
                 MEND_RNV_GITHUB_APP_KEY: ${RENOVATE_APP_KEY}
                 MEND_RNV_WEBHOOK_SECRET: ${RENOVATE_WEBHOOK_SECRET}
@@ -46,7 +51,6 @@ spec:
       main:
         ports:
           main:
-            port: 80  
             protocol: tcp   
     ingress:
       main:
