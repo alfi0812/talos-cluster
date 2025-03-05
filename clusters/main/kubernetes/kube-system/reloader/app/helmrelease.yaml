@@ -22,3 +22,4 @@ spec:
     remediation:
       retries: 3
   values:
+    fullnameOverride: reloader
