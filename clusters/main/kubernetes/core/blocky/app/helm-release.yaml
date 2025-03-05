@@ -41,6 +41,8 @@ spec:
       main:
         replicas: 1
         strategy: RollingUpdate
+    blocking:
+      clientGroupsBlock:  []
     k8sgateway:
       # -- list of processed domains
       domains:
