@@ -22,9 +22,3 @@ spec:
     remediation:
       retries: 3
   values:
-    fullnameOverride: reloader
-    reloader:
-      readOnlyRootFileSystem: true
-      podMonitor:
-        enabled: true
-        namespace: "{{ .Release.Namespace }}"
