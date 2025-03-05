@@ -40,8 +40,6 @@ spec:
           volsync:
             - name: data
               type: restic
-              cleanupTempPVC: true
-              cleanupCachePVC: true
               credentials: minio
               dest:
                 enabled: true
@@ -53,8 +51,6 @@ spec:
           volsync:
             - name: scriptspath
               type: restic
-              cleanupTempPVC: true
-              cleanupCachePVC: true
               credentials: minio
               dest:
                 enabled: true

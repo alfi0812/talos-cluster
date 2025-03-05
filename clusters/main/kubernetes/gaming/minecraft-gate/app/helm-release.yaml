@@ -47,8 +47,6 @@ spec:
             - name: icons
               type: restic
               credentials: minio
-              cleanupTempPVC: true
-              cleanupCachePVC: true
               dest:
                 enabled: true
               src:
