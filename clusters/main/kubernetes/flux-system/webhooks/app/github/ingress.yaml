@@ -26,7 +26,3 @@ spec:
     - hosts:
       - flux-webhook.${DOMAIN_1}
       secretName: flux-webhook-tls-0
-status:
-    loadBalancer:
-      ingress:
-      - ip: ${TRAEFIK_IP}
