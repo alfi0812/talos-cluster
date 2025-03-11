@@ -46,7 +46,7 @@ spec:
             traefik:
               enabled: true
               entrypoints:
-              - websecureu
+              - websecure
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
