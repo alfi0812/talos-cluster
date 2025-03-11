@@ -132,11 +132,6 @@ spec:
           appName: "qbittorrent"
           themeName : "dracula"
           baseUrl: https://theme-park.dev
-      realIP:
-        - name: real-ip
-          excludedNetworks:
-            - 172.16.0.0/16
-            - 172.17.0.0/16
     ingress:
       main:
         enabled: true
