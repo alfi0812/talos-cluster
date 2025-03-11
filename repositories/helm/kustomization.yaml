@@ -30,3 +30,4 @@ resources:
   - truecharts.yaml
   - nvdp.yaml
 # more goes here!
+  - ingress-nginx.yaml
