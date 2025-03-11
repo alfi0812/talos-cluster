@@ -23,7 +23,7 @@ spec:
   eventSources:
     - kind: HelmRelease
       name: "*"
-      namespace: kyverno
+      namespace: kubernetes-reflector
     - kind: HelmRelease
       name: "*"
       namespace: littlelink
