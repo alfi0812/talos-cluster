@@ -52,17 +52,11 @@ spec:
         type: LoadBalancer
     ingress:
       main:
-        enabled: true
+        enabled: false
         integrations:
           traefik:
-            enabled: true
-            entrypoints:
-            - websecure
-            middlewares:
-            - name: auth
-              namespace: traefik
-            - name: pihole
-              namespace: traefik
+            enabled: false
+            #auth & regex
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod

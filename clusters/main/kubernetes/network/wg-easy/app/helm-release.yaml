@@ -45,15 +45,11 @@ spec:
         externalTrafficPolicy: Local
     ingress:
       main:
-        enabled: true
+        enabled: false
         integrations:
           traefik:
-            enabled: true
-            entrypoints:
-            - websecure
-            middlewares:
-            - name: auth
-              namespace: traefik
+            enabled: false
+            #auth
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod

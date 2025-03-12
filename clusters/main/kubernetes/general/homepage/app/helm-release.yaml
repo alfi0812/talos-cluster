@@ -37,15 +37,11 @@ spec:
           encrKey: "${S3_ENCRYPTION_KEY}"
       ingress:
         main:
-          enabled: true
+          enabled: false
           integrations:
             traefik:
-              enabled: true
-              entrypoints:
-              - websecure
-              middlewares:
-              - name: auth
-                namespace: traefik
+              enabled: false
+              #auth
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
@@ -58,7 +54,7 @@ spec:
         codeserver:
           enabled: true
           ingress:
-            enabled: true
+            enabled: false
             hosts:
             - host: homepage.code.${DOMAIN_1}
               paths:
@@ -69,12 +65,8 @@ spec:
                 certificateIssuer: domain-1-le-prod
                 enabled: true
               traefik:
-                enabled: true
-                entrypoints:
-                - websecure
-                middlewares:
-                - name: auth
-                  namespace: 'traefik'
+                enabled: false
+                #auth
       persistence:
         config:
           volsync:

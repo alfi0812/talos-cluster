@@ -6,3 +6,5 @@ resources:
   - pihole/ks.yaml
   - rustdesk/ks.yaml
   - wg-easy/ks.yaml
+  - nginx-external/ks.yaml
+  - nginx-internal/ks.yaml

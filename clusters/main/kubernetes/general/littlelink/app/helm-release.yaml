@@ -27,12 +27,10 @@ spec:
     values:
       ingress:
         main:
-          enabled: true
+          enabled: false
           integrations:
             traefik:
-              enabled: true
-              entrypoints:
-              - websecure
+              enabled: false
           hosts:
             - host: ${DOMAIN_0}
               paths:

@@ -37,15 +37,13 @@ spec:
           encrKey: "${S3_ENCRYPTION_KEY}"
       ingress:
         main:
-          enabled: true
+          enabled: false
           integrations:
             traefik:
-              enabled: true
+              enabled: false
               entrypoints:
               - websecure
-              middlewares:
-              - name: auth
-                namespace: traefik
+              #auth
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod

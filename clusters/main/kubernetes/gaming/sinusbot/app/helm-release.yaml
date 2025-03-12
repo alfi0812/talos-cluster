@@ -60,12 +60,10 @@ spec:
                   schedule: 30 1 * * *
       ingress:
         main:
-          enabled: true
+          enabled: false
           integrations:
             traefik:
-              enabled: true
-              entrypoints:
-              - websecure
+              enabled: false
             certManager:
               enabled: true
               certificateIssuer: domain-0-le-prod

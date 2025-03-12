@@ -40,7 +40,7 @@ spec:
           type: ExternalIP
       ingress:
         main:
-          enabled: true
+          enabled: false
           hosts:
           - host: repeater.${DOMAIN_1}
             paths:
@@ -51,9 +51,5 @@ spec:
               certificateIssuer: domain-1-le-prod
               enabled: true
             traefik:
-              enabled: true
-              entrypoints:
-              - websecure
-              middlewares:
-              - name: auth
-                namespace: traefik
+              enabled: false
+              #auth

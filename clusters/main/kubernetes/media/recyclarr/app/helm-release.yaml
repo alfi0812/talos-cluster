@@ -42,7 +42,7 @@ spec:
         codeserver:
           enabled: true
           ingress:
-            enabled: true
+            enabled: false
             hosts:
             - host: recyclarr.${DOMAIN_1}
               paths:
@@ -53,12 +53,8 @@ spec:
                 certificateIssuer: domain-1-le-prod
                 enabled: true
               traefik:
-                enabled: true
-                entrypoints:
-                - websecure
-                middlewares:
-                - name: auth
-                  namespace: 'traefik'
+                enabled: false
+                #auth
       workload:
         main:
           podSpec:

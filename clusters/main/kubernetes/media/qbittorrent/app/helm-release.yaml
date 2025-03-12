@@ -51,17 +51,11 @@ spec:
           encrKey: "${S3_ENCRYPTION_KEY}"
       ingress:
         main:
-          enabled: true
+          enabled: false
           integrations:
             traefik:
-              enabled: true
-              entrypoints:
-              - websecure
-              middlewares:
-              - name: auth
-                namespace: 'traefik'
-              - name: torrent
-                namespace: 'traefik'
+              enabled: false
+              #auth & theme-park
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
