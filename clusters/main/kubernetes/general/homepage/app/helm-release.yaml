@@ -62,7 +62,7 @@ spec:
             enabled: true
             ingressClassName: internal
             hosts:
-            - host: home-code.${DOMAIN_1}
+            - host: homepage.code.${DOMAIN_1}
               paths:
               - path: /
                 pathType: Prefix
