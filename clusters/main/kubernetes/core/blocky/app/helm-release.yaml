@@ -44,7 +44,6 @@ spec:
     blocking:
       clientGroupsBlock:  []
     k8sgateway:
-      # -- list of processed domains
       domains:
       - domain: "${DOMAIN_0}"
         dnsChallenge:
@@ -60,7 +59,6 @@ spec:
       ips: []
       upstream: "1.1.1.1"
     queryLog:
-      # optional one of: mysql, postgresql, csv, csv-client. If empty, log to console only
       type: ""
     configmap:
       dashboard:
