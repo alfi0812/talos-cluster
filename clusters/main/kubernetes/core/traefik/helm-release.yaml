@@ -1,6 +1,0 @@
-
-      redirectRegex:
-        - name: pihole
-          permanent: true
-          regex: ${PIHOLE_REGEX}
-          replacement: ${PIHOLE_REPLACEMENT}
