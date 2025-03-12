@@ -40,7 +40,7 @@ spec:
           type: ExternalIP
       ingress:
         main:
-          enabled: true
+          enabled: false
           ingressClassName: internal
           annotations:
             nginx.ingress.kubernetes.io/auth-method: 'GET'
