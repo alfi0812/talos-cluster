@@ -60,7 +60,8 @@ spec:
                   schedule: 30 1 * * *
       ingress:
         main:
-          enabled: false
+          enabled: true
+          ingressClassName: external
           integrations:
             traefik:
               enabled: false
