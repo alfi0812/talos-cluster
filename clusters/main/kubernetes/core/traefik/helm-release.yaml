@@ -1,9 +1,4 @@
 
-    middlewares:
-      ipWhiteList:
-        - name: vaultwarden
-          sourceRange:
-            - 192.168.178.0/24
       redirectRegex:
         - name: pihole
           permanent: true
