@@ -37,7 +37,8 @@ spec:
           encrKey: "${S3_ENCRYPTION_KEY}"
       ingress:
         main:
-          enabled: false
+          enabled: true
+          ingressClassName: external
           integrations:
             traefik:
               enabled: false
@@ -51,24 +52,14 @@ spec:
                   pathType: Prefix
         admin:
           enabled: true
+          ingressClassName: internal
           primary: false
           targetSelector:
             main: main
           integrations:
             traefik:
-              enabled: true
-              entrypoints:
-              - websecure
-              middlewares:
-              - name: vaultwarden
-                namespace: traefik
-              - name: auth
-                namespace: traefik
-              - name: real-ip
-                namespace: traefik
-              enableFixedMiddlewares: true
-              forceTLS: true
-              allowCors: false
+              enabled: false
+              # auth, real-ip, local-only
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod

@@ -24,6 +24,7 @@ spec:
         crds: CreateReplace
         remediation:
             retries: 3
+    timeout: 20m
     values:
       portal:
         open:
