@@ -38,6 +38,7 @@ spec:
       ingress:
         main:
           enabled: true
+          ingressClassName: external
           annotations:
             nginx.ingress.kubernetes.io/auth-method: 'GET'
             nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local/api/authz/auth-request'
