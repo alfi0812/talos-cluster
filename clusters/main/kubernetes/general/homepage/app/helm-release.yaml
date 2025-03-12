@@ -57,7 +57,7 @@ spec:
                   pathType: Prefix
       addons:
         codeserver:
-          enabled: true
+          enabled: false
           ingress:
             enabled: true
             ingressClassName: internal

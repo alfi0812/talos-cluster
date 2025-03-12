@@ -9,12 +9,3 @@
           permanent: true
           regex: ${PIHOLE_REGEX}
           replacement: ${PIHOLE_REPLACEMENT}
-        - name: chrome-regex
-          permanent: false
-          regex: //$
-          replacement: /
-      themePark:
-        - name: torrent
-          appName: "qbittorrent"
-          themeName : "dracula"
-          baseUrl: https://theme-park.dev
