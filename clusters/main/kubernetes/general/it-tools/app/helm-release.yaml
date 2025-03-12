@@ -27,7 +27,8 @@ spec:
     values:
       ingress:
         main:
-          enabled: false
+          ingressClassName: external
+          enabled: true
           integrations:
             traefik:
               enabled: false

@@ -43,7 +43,8 @@ spec:
                 MEND_RNV_WEBHOOK_SECRET: ${RENOVATE_WEBHOOK_SECRET}
     ingress:
       main:
-        enabled: false
+        enabled: true
+        ingressClassName: external
         integrations:
           traefik:
             enabled: false

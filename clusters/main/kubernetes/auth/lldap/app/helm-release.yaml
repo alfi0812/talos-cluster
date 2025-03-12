@@ -40,7 +40,8 @@ spec:
         encrKey: "${S3_ENCRYPTION_KEY}"
     ingress:
         main:
-          enabled: false
+          ingressClassName: internal
+          enabled: true
           integrations:
             traefik:
               enabled: false
