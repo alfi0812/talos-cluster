@@ -1,0 +1,20 @@
+
+    middlewares:
+      ipWhiteList:
+        - name: vaultwarden
+          sourceRange:
+            - 192.168.178.0/24
+      redirectRegex:
+        - name: pihole
+          permanent: true
+          regex: ${PIHOLE_REGEX}
+          replacement: ${PIHOLE_REPLACEMENT}
+        - name: chrome-regex
+          permanent: false
+          regex: //$
+          replacement: /
+      themePark:
+        - name: torrent
+          appName: "qbittorrent"
+          themeName : "dracula"
+          baseUrl: https://theme-park.dev

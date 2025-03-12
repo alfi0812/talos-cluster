@@ -40,7 +40,13 @@ spec:
           type: ExternalIP
       ingress:
         main:
-          enabled: false
+          enabled: true
+          ingressClassName: internal
+          annotations:
+            nginx.ingress.kubernetes.io/auth-method: 'GET'
+            nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+            nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
+            nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
           hosts:
           - host: kvm.${DOMAIN_1}
             paths:
