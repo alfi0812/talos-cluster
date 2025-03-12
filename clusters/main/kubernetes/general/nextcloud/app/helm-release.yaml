@@ -27,7 +27,7 @@ spec:
     timeout: 20m
     values:
       global:
-        stopAll: true
+        stopAll: false
       credentials:
         minio:
           type: s3
