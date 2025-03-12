@@ -61,7 +61,6 @@ spec:
           integrations:
             traefik:
               enabled: false
-              #theme-park
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
