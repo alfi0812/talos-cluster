@@ -35,8 +35,8 @@ spec:
           ports:
             main:
               enabled: true
-              port: 443
-              protocol: https
+              port: 80
+              protocol: http
           type: ExternalIP
       ingress:
         main:
@@ -58,4 +58,3 @@ spec:
               enabled: true
             traefik:
               enabled: false
-              #auth
