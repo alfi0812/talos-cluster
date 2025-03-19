@@ -3,11 +3,9 @@ kind: Kustomization
 resources:
   - hastebin/ks.yaml
   - chromium/ks.yaml
-  - code-server/ks.yaml
   - homepage/ks.yaml
   - it-tools/ks.yaml
   - snippet-box/ks.yaml
-  - synctube/ks.yaml
   - uptime-kuma/ks.yaml
   - littlelink/ks.yaml
   - speedtest-tracker/ks.yaml
