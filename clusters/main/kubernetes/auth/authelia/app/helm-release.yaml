@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: authelia
-      version: 26.4.8
+      version: 27.1.2
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -83,44 +83,55 @@ spec:
     workload:
       main:
         replicas: 1
-        strategy: RollingUpdate
-    theme: dark
-    totp:
-      issuer: ${DOMAIN_1}
-    notifier:
-      filesystem:
-        enabled: false
-      smtp:
-        enabled: true
-        host: ${SMTP_HOST}
-        plain_password: ${SMTP_PASSWORD_AUTHELIA}
-        port: 587
-        sender: auth@${DOMAIN_1}
-        startup_check_address: auth@${DOMAIN_1}
-        username: ${SMTP_USER}
-    domain: ${DOMAIN_1}
-    authentication_backend:
-      file:
-        enabled: false
-      ldap:
-        additional_groups_dn: ou=groups
-        additional_users_dn: ou=people
-        base_dn: DC=${DN},DC=${DC}
-        enabled: true
-        groups_filter: (member={dn})
-        implementation: custom
-        plain_password: ${AUTHELIA_PASSWORD}
-        url: ldap://lldap-ldap.lldap.svc.cluster.local:3890
-        user: uid=admin,ou=people,dc=${DN},dc=${DC}
-        users_filter: (&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))
-    access_control:
-      rules:
-      - domain:
-        - ${DOMAIN_1}
-        - '*.${DOMAIN_1}'
-        domain_regex: []
-        networks: []
-        policy: two_factor
-        resources: []
-        subject:
-        - group:admin
+        podSpec:
+          containers:
+            main:
+              env:
+                AUTHELIA_SESSION_SECRET: ${AUTHELIA_ENCRYPTION_KEY}
+                AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET: ${AUTHELIA_JWT_KEY}
+                AUTHELIA_STORAGE_ENCRYPTION_KEY: ${AUTHELIA_SESSION_KEY}
+    authelia:
+      theme: auto
+      totp:
+        issuer: ${DOMAIN_1}
+      authentication_backend:
+        ldap:
+          url: ldap://lldap-ldap.lldap.svc.cluster.local:3890
+          tls:
+            server_name: lldap.${DOMAIN_1}
+          base_dn: DC=${DN},DC=${DC}
+          username_attribute: uid
+          additional_users_dn: ou=people
+          users_filter: (&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))
+          additional_groups_dn: ou=groups
+          groups_filter: (member={dn})
+          user: uid=admin,ou=people,dc=${DN},dc=${DC}  
+        password: ${LLDAP_PASSWORD}
+      access_control:                                                                              
+        rules:                                     
+        - domain:                                  
+            - ${DOMAIN_1}                       
+            - '*.${DOMAIN_1}'                    
+          policy: two_factor                       
+          subject:                                 
+            - 'group:admin' 
+      session:
+        domain: ${DOMAIN_1}
+        cookies:
+          - domain: '${DOMAIN_1}'
+            authelia_url: 'https://auth.${DOMAIN_1}'
+            default_redirection_url: ' https:///www.${DOMAIN_1}'
+      regulation:
+        find_time: 10m
+        ban_time: 12h 
+      notifier:                        
+        smtp:      
+          address: 'smtp://${SMTP_HOST}:587'                               
+          username: ${SMTP_USER}
+          password: ${SMTP_PASSWORD_AUTHELIA}
+          sender: auth@${DOMAIN_1}
+          startup_check_address: auth@${DOMAIN_1}              
+          disable_html_emails: true               
+          tls:                         
+            server_name: ${SMTP_HOST}    
+
