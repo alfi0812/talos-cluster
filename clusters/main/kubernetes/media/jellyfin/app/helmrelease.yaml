@@ -64,6 +64,7 @@ spec:
               enabled: true
             src:
               enabled: true
+              cacheCapacity: 20Gi
               trigger:
                 schedule: 30 0 * * *
         media:
