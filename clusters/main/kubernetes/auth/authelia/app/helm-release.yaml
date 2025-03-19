@@ -102,7 +102,6 @@ spec:
           base_dn: DC=${DN},DC=${DC}
           attributes:
             username: uid
-          username_attribute: uid
           additional_users_dn: ou=people
           users_filter: (&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))
           additional_groups_dn: ou=groups
@@ -121,7 +120,7 @@ spec:
         cookies:
           - domain: '${DOMAIN_1}'
             authelia_url: 'https://auth.${DOMAIN_1}'
-            default_redirection_url: ' https://www.${DOMAIN_1}'
+            default_redirection_url: 'https://www.${DOMAIN_1}'
       regulation:
         find_time: 10m
         ban_time: 12h 
