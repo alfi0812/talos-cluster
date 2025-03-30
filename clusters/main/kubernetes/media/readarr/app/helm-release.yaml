@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: readarr
-            version: 24.4.5
+            version: 24.5.0
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
