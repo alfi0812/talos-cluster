@@ -9,7 +9,7 @@ spec:
         spec:
             # renovate: registryUrl=https://charts.truechartsoci.org
             chart: prowlarr
-            version: 18.18.1
+            version: 18.18.2
             sourceRef:
                 kind: HelmRepository
                 name: truecharts
