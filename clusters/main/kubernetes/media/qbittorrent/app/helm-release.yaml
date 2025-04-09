@@ -1,116 +1,116 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: qbittorrent
-    namespace: media
+  name: qbittorrent
+  namespace: media
 spec:
-    postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              version: v1
-              kind: Deployment
-              name: qbittorrent
-            patch: |
-              - op: add
-                path: /spec/template/spec/containers/1/resources/limits/truecharts.org~1tun
-                value: 1
-    interval: 5m
-    chart:
-        spec:
-            # renovate: registryUrl=https://charts.truechartsoci.org
-            chart: qbittorrent
-            version: 22.4.9
-            sourceRef:
-                kind: HelmRepository
-                name: truecharts
-                namespace: flux-system
-            interval: 5m
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    values:
-      portal:
-        open:
-          enabled: false
-      global:
-        stopAll: false
-      credentials:
-        minio:
-          type: s3
-          url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}-qbittorrent"
-          accessKey: "${S3_ACCESS_KEY}"
-          secretKey: "${S3_SECRET_KEY}"
-          encrKey: "${S3_ENCRYPTION_KEY}"
-      ingress:
-        main:
-          enabled: true
-          ingressClassName: internal
-          annotations:
-            nginx.ingress.kubernetes.io/auth-method: 'GET'
-            nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-            nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
-            nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
-          integrations:
-            traefik:
-              enabled: false
-            certManager:
-              enabled: true
-              certificateIssuer: domain-1-le-prod
-          hosts:
-            - host: qbit.${DOMAIN_1}
-              paths:
-                - path: /
-                  pathType: Prefix
-      persistence:
-        config:
-          volsync:
-          - name: config
-            type: restic
-            credentials: minio
-            dest:
-              enabled: true
-            src:
-              enabled: true
-              trigger:
-                schedule: 40 0 * * *
-        media:
-          enabled: true
-          existingClaim: media-nfs-pvc
-          mountPath: /Media
-      workload:
-        qbitportforward:
-          enabled: false
-      service:
-        proxy:
-          enabled: true
-          ports:
-            gluetun:
-              enabled: true
-              port: 8888
-              protocol: "http"
-              targetPort: 8888
-      addons:
-        vpn:
-          type: gluetun
-          killSwitch: true
-          excludedNetworks_IPv4:
-          - 192.168.178.0/24
-          env:
-            VPN_TYPE: wireguard
-            VPN_SERVICE_PROVIDER: custom
-            WIREGUARD_ENDPOINT_IP: ${WG_ENDPOINT_IP}
-            WIREGUARD_ENDPOINT_PORT: 1443
-            WIREGUARD_PUBLIC_KEY: ${WG_PUBLIC_KEY}
-            WIREGUARD_PRIVATE_KEY: ${WG_PRIVATE_KEY}
-            FIREWALL_VPN_INPUT_PORTS: ${WG_FIREWALL_INPUT_PORT}
-            WIREGUARD_ADDRESSES: ${WG_ADDRESSES}
-            HTTPPROXY: "on"
-            FIREWALL_INPUT_PORTS: 10095,8888
+  postRenderers:
+  - kustomize:
+      patches:
+        - target:
+            version: v1
+            kind: Deployment
+            name: qbittorrent
+          patch: |
+            - op: add
+              path: /spec/template/spec/containers/1/resources/limits/truecharts.org~1tun
+              value: 1
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.truechartsoci.org
+      chart: qbittorrent
+      version: 22.4.9
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    portal:
+      open:
+        enabled: false
+    global:
+      stopAll: false
+    credentials:
+      minio:
+        type: s3
+        url: "${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-qbittorrent"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          nginx.ingress.kubernetes.io/auth-method: 'GET'
+          nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+          nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
+          nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: qbit.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
+    persistence:
+      config:
+        volsync:
+        - name: config
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 40 0 * * *
+      media:
+        enabled: true
+        existingClaim: media-nfs-pvc
+        mountPath: /Media
+    workload:
+      qbitportforward:
+        enabled: false
+    service:
+      proxy:
+        enabled: true
+        ports:
+          gluetun:
+            enabled: true
+            port: 8888
+            protocol: "http"
+            targetPort: 8888
+    addons:
+      vpn:
+        type: gluetun
+        killSwitch: true
+        excludedNetworks_IPv4:
+        - 192.168.178.0/24
+        env:
+          VPN_TYPE: wireguard
+          VPN_SERVICE_PROVIDER: custom
+          WIREGUARD_ENDPOINT_IP: ${WG_ENDPOINT_IP}
+          WIREGUARD_ENDPOINT_PORT: 1443
+          WIREGUARD_PUBLIC_KEY: ${WG_PUBLIC_KEY}
+          WIREGUARD_PRIVATE_KEY: ${WG_PRIVATE_KEY}
+          FIREWALL_VPN_INPUT_PORTS: ${WG_FIREWALL_INPUT_PORT}
+          WIREGUARD_ADDRESSES: ${WG_ADDRESSES}
+          HTTPPROXY: "on"
+          FIREWALL_INPUT_PORTS: 10095,8888
