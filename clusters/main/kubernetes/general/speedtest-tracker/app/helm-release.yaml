@@ -1,100 +1,100 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: speedtest-tracker
-    namespace: speedtest-tracker
+  name: speedtest-tracker
+  namespace: speedtest-tracker
 spec:
-    interval: 5m
-    chart:
-        spec:
-            # renovate: registryUrl=https://charts.truechartsoci.org
-            chart: speedtest-tracker
-            version: 6.7.3
-            sourceRef:
-                kind: HelmRepository
-                name: truecharts
-                namespace: flux-system
-            interval: 5m
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    values:
-      global:
-        stopAll: false
-      credentials:
-        minio:
-          type: s3
-          url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}-speedtest-tracker"
-          accessKey: "${S3_ACCESS_KEY}"
-          secretKey: "${S3_SECRET_KEY}"
-          encrKey: "${S3_ENCRYPTION_KEY}"
-      ingress:
-        main:
-          enabled: true
-          ingressClassName: external
-          integrations:
-            traefik:
-              enabled: false
-            certManager:
-              enabled: true
-              certificateIssuer: domain-1-le-prod
-          hosts:
-            - host: speedtest.${DOMAIN_1}
-              paths:
-                - path: /
-                  pathType: Prefix
-      persistence:
-        config:
-          volsync:
-          - name: config
-            type: restic
-            credentials: minio
-            dest:
-              enabled: true
-            src:
-              enabled: true
-              trigger:
-                schedule: 30 1 * * *
-      cnpg:
-        main:
-          cluster:
-            singleNode: true
-          backups:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.truechartsoci.org
+      chart: speedtest-tracker
+      version: 6.7.3
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    global:
+      stopAll: false
+    credentials:
+      minio:
+        type: s3
+        url: "${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-speedtest-tracker"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
             enabled: true
-            credentials: minio
-            scheduledBackups:
-              - name: daily-backup
-                schedule: "0 5 0 * * *"
-                backupOwnerReference: self
-                immediate: true
-                suspend: false
-          recovery:
-            credentials: minio
-      workload:
-        main:
-          podSpec:
-            containers:
-              main:
-                env:
-                  APP_NAME: Speedtest Tracker
-                  APP_URL: https://speedtest.${DOMAIN_1}/
-                  MAIL_FROM_ADDRESS: speedtest@${DOMAIN_1}
-                  MAIL_HOST: ${SMTP_HOST}
-                  MAIL_MAILER: smtp
-                  MAIL_PASSWORD: ${SMTP_PASSWORD_SPEEDTEST_TRACKER}
-                  MAIL_PORT: 465
-                  MAIL_USERNAME: ${SMTP_USER}
-                  PUBLIC_DASHBOARD: false
-                  CHART_DATETIME_FORMAT: "d.m H:i"
-                  DATETIME_FORMAT: "d.m.Y H:i"
-                  SPEEDTEST_SCHEDULE: "0 * * * *"
-                  PRUNE_RESULTS_OLDER_THAN: 90
-                  DISPLAY_TIMEZONE: "Europe/Berlin"
-                  SPEEDTEST_SERVERS: "1973"
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: speedtest.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
+    persistence:
+      config:
+        volsync:
+        - name: config
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 30 1 * * *
+    cnpg:
+      main:
+        cluster:
+          singleNode: true
+        backups:
+          enabled: true
+          credentials: minio
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "0 5 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
+        recovery:
+          credentials: minio
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                APP_NAME: Speedtest Tracker
+                APP_URL: https://speedtest.${DOMAIN_1}/
+                MAIL_FROM_ADDRESS: speedtest@${DOMAIN_1}
+                MAIL_HOST: ${SMTP_HOST}
+                MAIL_MAILER: smtp
+                MAIL_PASSWORD: ${SMTP_PASSWORD_SPEEDTEST_TRACKER}
+                MAIL_PORT: 465
+                MAIL_USERNAME: ${SMTP_USER}
+                PUBLIC_DASHBOARD: false
+                CHART_DATETIME_FORMAT: "d.m H:i"
+                DATETIME_FORMAT: "d.m.Y H:i"
+                SPEEDTEST_SCHEDULE: "0 * * * *"
+                PRUNE_RESULTS_OLDER_THAN: 90
+                DISPLAY_TIMEZONE: "Europe/Berlin"
+                SPEEDTEST_SERVERS: "1973"

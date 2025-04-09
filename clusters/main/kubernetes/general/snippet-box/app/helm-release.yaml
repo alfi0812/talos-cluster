@@ -1,62 +1,62 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: snippet-box
-    namespace: snippet-box
+  name: snippet-box
+  namespace: snippet-box
 spec:
-    interval: 5m
-    chart:
-        spec:
-            # renovate: registryUrl=https://charts.truechartsoci.org
-            chart: snippet-box
-            version: 9.5.1
-            sourceRef:
-                kind: HelmRepository
-                name: truecharts
-                namespace: flux-system
-            interval: 5m
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    values:
-      credentials:
-        minio:
-          type: s3
-          url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}-snippet-box"
-          accessKey: "${S3_ACCESS_KEY}"
-          secretKey: "${S3_SECRET_KEY}"
-          encrKey: "${S3_ENCRYPTION_KEY}"
-      ingress:
-        main:
-          enabled: true
-          ingressClassName: external
-          integrations:
-            traefik:
-              enabled: false
-            certManager:
-              enabled: true
-              certificateIssuer: domain-0-le-prod
-          hosts:
-            - host: snippet.${DOMAIN_0}
-              paths:
-                - path: /
-                  pathType: Prefix
-      persistence:
-        data:
-          volsync:
-          - name: data
-            type: restic
-            credentials: minio
-            dest:
-              enabled: true
-            src:
-              enabled: true
-              trigger:
-                schedule: 30 1 * * *
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.truechartsoci.org
+      chart: snippet-box
+      version: 9.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    credentials:
+      minio:
+        type: s3
+        url: "${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-snippet-box"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
+            enabled: true
+            certificateIssuer: domain-0-le-prod
+        hosts:
+          - host: snippet.${DOMAIN_0}
+            paths:
+              - path: /
+                pathType: Prefix
+    persistence:
+      data:
+        volsync:
+        - name: data
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 30 1 * * *

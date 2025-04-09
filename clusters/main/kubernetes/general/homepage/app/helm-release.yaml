@@ -4,95 +4,95 @@ metadata:
     name: homepage
     namespace: homepage
 spec:
-    interval: 5m
-    chart:
-        spec:
-            # renovate: registryUrl=https://charts.truechartsoci.org
-            chart: homepage
-            version: 10.1.1
-            sourceRef:
-                kind: HelmRepository
-                name: truecharts
-                namespace: flux-system
-            interval: 5m
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    values:
-      global:
-        stopAll: false
-      credentials:
-        minio:
-          type: s3
-          url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}-homepage"
-          accessKey: "${S3_ACCESS_KEY}"
-          secretKey: "${S3_SECRET_KEY}"
-          encrKey: "${S3_ENCRYPTION_KEY}"
-      ingress:
-        main:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.truechartsoci.org
+      chart: homepage
+      version: 10.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    global:
+      stopAll: false
+    credentials:
+      minio:
+        type: s3
+        url: "${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-homepage"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          nginx.ingress.kubernetes.io/auth-method: 'GET'
+          nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+          nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
+          nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: home.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
+    addons:
+      codeserver:
+        enabled: true
+        ingress:
           enabled: true
-          ingressClassName: external
+          ingressClassName: internal
+          hosts:
+          - host: homepage.code.${DOMAIN_1}
+            paths:
+            - path: /
+              pathType: Prefix
           annotations:
             nginx.ingress.kubernetes.io/auth-method: 'GET'
             nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
             nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
             nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
           integrations:
+            certManager:
+              certificateIssuer: domain-1-le-prod
+              enabled: true
             traefik:
               enabled: false
-            certManager:
-              enabled: true
-              certificateIssuer: domain-1-le-prod
-          hosts:
-            - host: home.${DOMAIN_1}
-              paths:
-                - path: /
-                  pathType: Prefix
-      addons:
-        codeserver:
-          enabled: true
-          ingress:
+    persistence:
+      config:
+        volsync:
+        - name: config
+          type: restic
+          credentials: minio
+          dest:
             enabled: true
-            ingressClassName: internal
-            hosts:
-            - host: homepage.code.${DOMAIN_1}
-              paths:
-              - path: /
-                pathType: Prefix
-            annotations:
-              nginx.ingress.kubernetes.io/auth-method: 'GET'
-              nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-              nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
-              nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
-            integrations:
-              certManager:
-                certificateIssuer: domain-1-le-prod
-                enabled: true
-              traefik:
-                enabled: false
-      persistence:
-        config:
-          volsync:
-          - name: config
-            type: restic
-            credentials: minio
-            dest:
-              enabled: true
-            src:
-              enabled: true
-              trigger:
-                schedule: 10 0 * * *
-      workload:
-        main:
-          podSpec:
-            containers:
-              main:
-                env:
-                  HOMEPAGE_ALLOWED_HOSTS: home.${DOMAIN_1}
+          src:
+            enabled: true
+            trigger:
+              schedule: 10 0 * * *
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                HOMEPAGE_ALLOWED_HOSTS: home.${DOMAIN_1}
