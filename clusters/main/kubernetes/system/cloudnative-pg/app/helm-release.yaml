@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-
       chart: cloudnative-pg
       version: 0.23.2
       sourceRef:
@@ -26,4 +25,4 @@ spec:
       retries: 3
   values:
     crds:
-    create: true
+      create: true

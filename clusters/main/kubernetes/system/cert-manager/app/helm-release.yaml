@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-
       chart: cert-manager
       version: v1.17.1
       sourceRef:
@@ -26,7 +25,7 @@ spec:
       retries: 3
   values:
     crds:
-    enabled: true
+      enabled: true
     dns01RecursiveNameservers: "1.1.1.1:53,1.0.0.1:53"
     dns01RecursiveNameserversOnly: false
     enableCertificateOwnerRef: true
