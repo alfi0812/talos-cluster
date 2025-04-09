@@ -1,58 +1,58 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: cloudflareddns
-    namespace: cloudflareddns
+  name: cloudflareddns
+  namespace: cloudflareddns
 spec:
-    interval: 5m
-    chart:
-        spec:
-            # renovate: registryUrl=https://charts.truechartsoci.org
-            chart: cloudflareddns
-            version: 11.5.5
-            sourceRef:
-                kind: HelmRepository
-                name: truecharts
-                namespace: flux-system
-            interval: 5m
-    install:
-        createNamespace: true
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    upgrade:
-        crds: CreateReplace
-        remediation:
-            retries: 3
-    values:
-      image:
-        tag: latest@sha256:51e8638867e5821812cd1b4c6f3cbda7ed7dda813881516e416b9fd5d18a28e1
-      credentials:
-        minio:
-          type: s3
-          url: "${S3_URL_MINIO}"
-          bucket: "${S3_BUCKET}-cloudflareddns"
-          accessKey: "${S3_ACCESS_KEY}"
-          secretKey: "${S3_SECRET_KEY}"
-          encrKey: "${S3_ENCRYPTION_KEY}"
-      cloudflareddns:
-        api_token: ${CLOUDFLARE_TOKEN}
-        host_zone_record:
-        - domain: minecraft.${DOMAIN_0}
-          record: A
-          zone: ${ZONE_0}
-        - domain: wireguard.${DOMAIN_1}
-          record: A
-          zone: ${ZONE_1}
-      persistence:
-        config:
-          volsync:
-          - name: config
-            type: restic
-            credentials: minio
-            dest:
-              enabled: true
-            src:
-              enabled: true
-              trigger:
-                schedule: 10 0 * * *
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.truechartsoci.org
+      chart: cloudflareddns
+      version: 11.5.5
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    image:
+      tag: latest@sha256:51e8638867e5821812cd1b4c6f3cbda7ed7dda813881516e416b9fd5d18a28e1
+    credentials:
+      minio:
+        type: s3
+        url: "${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-cloudflareddns"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    cloudflareddns:
+      api_token: ${CLOUDFLARE_TOKEN}
+      host_zone_record:
+      - domain: minecraft.${DOMAIN_0}
+        record: A
+        zone: ${ZONE_0}
+      - domain: wireguard.${DOMAIN_1}
+        record: A
+        zone: ${ZONE_1}
+    persistence:
+      config:
+        volsync:
+        - name: config
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 10 0 * * *
