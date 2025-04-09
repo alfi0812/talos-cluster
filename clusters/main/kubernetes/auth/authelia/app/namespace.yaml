@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-    name: authelia
-    labels:
-      pod-security.kubernetes.io/enforce: privileged
+  name: authelia
+  labels:
+    pod-security.kubernetes.io/enforce: privileged

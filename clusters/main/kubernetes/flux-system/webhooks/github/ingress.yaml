@@ -4,8 +4,8 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
   annotations:
-      cert-manager.io/cluster-issuer: domain-1-le-prod
-      cert-manager.io/private-key-rotation-policy: Always
+    cert-manager.io/cluster-issuer: domain-1-le-prod
+    cert-manager.io/private-key-rotation-policy: Always
 spec:
   ingressClassName: external
   rules:
