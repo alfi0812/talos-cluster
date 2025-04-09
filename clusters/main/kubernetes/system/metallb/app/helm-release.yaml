@@ -23,4 +23,4 @@ spec:
       retries: 3
   values:
     speaker:
-    ignoreExcludeLB: true
+      ignoreExcludeLB: true
