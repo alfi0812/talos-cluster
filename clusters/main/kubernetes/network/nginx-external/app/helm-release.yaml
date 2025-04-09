@@ -35,6 +35,7 @@ spec:
             metallb.io/loadBalancerIPs: ${NGINX_EXTERNAL_IP}
             metallb.universe.tf/ip-allocated-from-pool: main
         ingressClassByName: true
+        watchIngressWithoutClass: false
         ingressClassResource:
           name: external
           default: false

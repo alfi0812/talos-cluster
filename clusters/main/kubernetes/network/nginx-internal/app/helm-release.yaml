@@ -35,6 +35,7 @@ spec:
             metallb.io/loadBalancerIPs: ${NGINX_INTERNAL_IP}
             metallb.universe.tf/ip-allocated-from-pool: main
         ingressClassByName: true
+        watchIngressWithoutClass: true
         ingressClassResource:
           name: internal
           default: true
