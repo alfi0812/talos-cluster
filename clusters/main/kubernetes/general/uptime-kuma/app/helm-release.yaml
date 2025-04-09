@@ -19,7 +19,7 @@ spec:
     createNamespace: true
     crds: CreateReplace
     remediation:
-      retries: 3  
+      retries: 3
   upgrade:
     crds: CreateReplace
     remediation:

@@ -106,16 +106,16 @@ spec:
           users_filter: (&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))
           additional_groups_dn: ou=groups
           groups_filter: (member={dn})
-          user: uid=admin,ou=people,dc=${DN},dc=${DC}  
+          user: uid=admin,ou=people,dc=${DN},dc=${DC}
           password: ${LLDAP_PASSWORD}
-      access_control:                                                                              
-        rules:                                     
-        - domain:                                  
-            - ${DOMAIN_1}                       
-            - '*.${DOMAIN_1}'                    
-          policy: two_factor                       
-          subject:                                 
-            - 'group:admin' 
+      access_control:
+        rules:
+        - domain:
+            - ${DOMAIN_1}
+            - '*.${DOMAIN_1}'
+          policy: two_factor
+          subject:
+            - 'group:admin'
       session:
         cookies:
           - domain: '${DOMAIN_1}'
@@ -123,15 +123,14 @@ spec:
             default_redirection_url: 'https://www.${DOMAIN_1}'
       regulation:
         find_time: 10m
-        ban_time: 12h 
-      notifier:                        
-        smtp:      
-          address: 'smtp://${SMTP_HOST}:587'                               
+        ban_time: 12h
+      notifier:
+        smtp:
+          address: 'smtp://${SMTP_HOST}:587'
           username: ${SMTP_USER}
           password: ${SMTP_PASSWORD_AUTHELIA}
           sender: auth@${DOMAIN_1}
-          startup_check_address: auth@${DOMAIN_1}              
-          disable_html_emails: true               
-          tls:                         
-            server_name: ${SMTP_HOST}    
-
+          startup_check_address: auth@${DOMAIN_1}
+          disable_html_emails: true
+          tls:
+            server_name: ${SMTP_HOST}
