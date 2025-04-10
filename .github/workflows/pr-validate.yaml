@@ -44,7 +44,7 @@ jobs:
           ref: "${{ github.event.repository.default_branch }}"
           path: default
       - name: Diff Resources
-        uses: docker://ghcr.io/allenporter/flux-local:main@sha256:1209653e60a93599e96d5f52f462524992bffe9f05fca85612bbe3b8b8f95c14
+        uses: docker://ghcr.io/allenporter/flux-local:v7.3.0@sha256:81870d4e24a3691e0ef9a258505100b194e550e1f8ffeb5e696fdbaab1913429 # v7.3.0
         with:
           args: >-
             diff ${{ matrix.resources }}
