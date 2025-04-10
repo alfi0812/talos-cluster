@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: nginx-internal
+  name: cloudflareddns
   namespace: flux-system
 spec:
   interval: 10m
-  path: clusters/main/kubernetes/network/nginx-internal/app
+  path: clusters/main/kubernetes/networking/cloudflareddns/app
   prune: true
   sourceRef:
     kind: GitRepository
