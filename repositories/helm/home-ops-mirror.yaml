@@ -3,9 +3,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: truecharts
+  name: home-ops-mirror
   namespace: flux-system
 spec:
   type: oci
-  interval: 5m
-  url: oci://tccr.io/truecharts
+  interval: 2h
+  url: oci://ghcr.io/home-operations/charts-mirror
