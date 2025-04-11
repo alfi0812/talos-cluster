@@ -30,7 +30,7 @@ spec:
     credentials:
       minio:
         type: s3
-        url: "https://${S3_URL_MINIO}"
+        url: "https://${S3_URL}"
         bucket: "${S3_BUCKET}-jts3servermod"
         accessKey: "${S3_ACCESS_KEY}"
         secretKey: "${S3_SECRET_KEY}"
