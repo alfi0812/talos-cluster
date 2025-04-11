@@ -26,6 +26,9 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    master:
+      config:
+        extraLabelNs: ["nvidia.com"]
     worker:
       config:
         core:
