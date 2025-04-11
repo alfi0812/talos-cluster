@@ -84,7 +84,7 @@ spec:
       data:
         enabled: true
         type: nfs
-        path: ${NEXTCLOUD_NFS_PATH}
+        path: /${NEXTCLOUD_NFS_PATH}
         server: ${CONFIG_TRUENAS_IP}
       html:
         volsync:
@@ -100,7 +100,6 @@ spec:
     nextcloud:
       collabora:
         enabled: true
-        # password: ${NEXTCLOUD_PASSWORD}
       credentials:
         initialAdminPassword: "${NEXTCLOUD_PASSWORD}"
         initialAdminUser: "${NEXTCLOUD_USER}"
