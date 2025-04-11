@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.truechartsoci.org
       chart: nvidia-device-plugin
       version:  0.17.1
       sourceRef:
@@ -41,7 +40,8 @@ spec:
                   replicas: 5
     gfd:
       enabled: true
-    nfd: {}
+    nfd:
+      enabled: false
     nodeSelector:
       feature.node.kubernetes.io/pci-10de.present: "true"
       
