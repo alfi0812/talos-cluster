@@ -51,6 +51,30 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+      admin:
+        enabled: true
+        ingressClassName: external
+        primary: false
+        annotations:
+          nginx.ingress.kubernetes.io/whitelist-source-range: '192.168.178.0/24'
+          nginx.ingress.kubernetes.io/auth-method: 'GET'
+          nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+          nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
+          nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+        targetSelector:
+          main: main
+        integrations:
+          traefik:
+            enabled: false
+            # auth, real-ip, local-only
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: nextcloud.${DOMAIN_1}
+            paths:
+              - path: /collabora/browser/dist/admin/admin.html
+                pathType: Prefix
     cnpg:
       main:
         cluster:
