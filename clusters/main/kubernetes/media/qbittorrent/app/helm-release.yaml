@@ -44,7 +44,7 @@ spec:
     credentials:
       minio:
         type: s3
-        url: "https://${S3_URL}"
+        url: "https://${S3_URL_MINIO}"
         bucket: "${S3_BUCKET}-qbittorrent"
         accessKey: "${S3_ACCESS_KEY}"
         secretKey: "${S3_SECRET_KEY}"
