@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.truechartsoci.org
       chart: nextcloud
-      version: 33.0.4
+      version: 33.0.5
       sourceRef:
         kind: HelmRepository
         name: truecharts
