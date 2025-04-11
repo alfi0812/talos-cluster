@@ -25,6 +25,9 @@ spec:
     remediation:
       retries: 3
   values:
+    image:
+      repository: nvcr.io/nvidia/k8s-device-plugin
+      tag: v0.17.1
     runtimeClassName: nvidia
     config:
       map:
