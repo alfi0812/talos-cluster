@@ -40,4 +40,6 @@ spec:
                 - name: nvidia.com/gpu
                   replicas: 5
     gfd:
-      enabled: true
+      enabled: false
+    nfd:
+      enabled: false
