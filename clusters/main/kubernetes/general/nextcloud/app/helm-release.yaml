@@ -100,7 +100,7 @@ spec:
     nextcloud:
       collabora:
         enabled: true
-        password: "${NEXTCLOUD_PASSWORD}"
+        password: ${NEXTCLOUD_PASSWORD}
       credentials:
         initialAdminPassword: "${NEXTCLOUD_PASSWORD}"
         initialAdminUser: "${NEXTCLOUD_USER}"
