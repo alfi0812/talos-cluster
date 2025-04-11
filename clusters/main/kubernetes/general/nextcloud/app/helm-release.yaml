@@ -62,7 +62,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
           nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
         targetSelector:
-          main: main
+          collabora: collabora
         integrations:
           traefik:
             enabled: false
