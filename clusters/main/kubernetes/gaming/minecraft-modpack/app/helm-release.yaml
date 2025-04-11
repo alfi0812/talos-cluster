@@ -33,7 +33,7 @@ spec:
       data:
         enabled: true
         type: nfs
-        path: ${MINECRAFT_NFS_PATH}
+        path: /${MINECRAFT_NFS_PATH}
         server: ${CONFIG_TRUENAS_IP}
       backups:
         enabled: false
