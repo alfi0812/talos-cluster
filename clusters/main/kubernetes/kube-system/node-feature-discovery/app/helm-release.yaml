@@ -30,5 +30,14 @@ spec:
       config:
         core:
           sources: ["pci", "system", "usb"]
+        tolerations:
+          - key: "node-role.kubernetes.io/master"
+            operator: "Equal"
+            value: ""
+            effect: "NoSchedule"
+          - key: "nvidia.com/gpu"
+            operator: "Equal"
+            value: "present"
+            effect: "NoSchedule"
     prometheus:
       enable: false
