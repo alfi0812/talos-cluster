@@ -26,21 +26,9 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    master:
-      config:
-        extraLabelNs: ["nvidia.com"]
     worker:
       config:
         core:
           sources: ["pci", "system", "usb"]
-        tolerations:
-          - key: "node-role.kubernetes.io/master"
-            operator: "Equal"
-            value: ""
-            effect: "NoSchedule"
-          - key: "nvidia.com/gpu"
-            operator: "Equal"
-            value: "present"
-            effect: "NoSchedule"
     prometheus:
       enable: false
