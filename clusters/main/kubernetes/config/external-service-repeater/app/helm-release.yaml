@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.truechartsoci.org
       chart: external-service
       version: 15.6.2
       sourceRef:

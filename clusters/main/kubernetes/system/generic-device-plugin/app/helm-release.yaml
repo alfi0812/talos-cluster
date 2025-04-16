@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.truechartsoci.org
       chart: generic-device-plugin
       version: 1.2.0
       sourceRef:

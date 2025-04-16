@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.truechartsoci.org
       chart: cloudflared
       version: 13.3.0
       sourceRef:

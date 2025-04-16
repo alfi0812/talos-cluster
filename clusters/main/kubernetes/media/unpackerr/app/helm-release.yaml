@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.truechartsoci.org
       chart: unpackerr
       version: 15.6.1
       sourceRef:

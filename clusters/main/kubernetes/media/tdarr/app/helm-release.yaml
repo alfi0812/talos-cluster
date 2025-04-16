@@ -7,7 +7,6 @@ spec:
   interval: 10m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.truechartsoci.org
       chart: tdarr
       version: 11.24.0
       sourceRef:
