@@ -9,7 +9,8 @@
     "pinDigest": {
       "enabled": true,
       "automerge": true,
-      "dependencyDashboardApproval": false
+      "dependencyDashboardApproval": false,
+      "labels": ["type/pin", "automerge"]
     },
     "ignore": [],
     "packageRules": [
