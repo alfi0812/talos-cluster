@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webhook-receiver
+  namespace: flux-system
+  annotations:
+    cert-manager.io/cluster-issuer: domain-1-le-prod
+    cert-manager.io/private-key-rotation-policy: Always
+spec:
+  ingressClassName: external
+  rules:
+  - host: flux-webhook.${DOMAIN_1}
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: webhook-receiver
+            port:
+              number: 80
+  tls:
+    - hosts:
+      - flux-webhook.${DOMAIN_1}
+      secretName: flux-webhook-tls-0

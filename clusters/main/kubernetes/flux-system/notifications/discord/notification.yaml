@@ -1,0 +1,201 @@
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/provider-notification-v1beta3.json
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: discord
+  namespace: flux-system
+spec:
+  type: discord
+  secretRef:
+    name: discord-webhook
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/alert-notification-v1beta3.json
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord
+  namespace: flux-system
+spec:
+  providerRef:
+    name: discord
+  eventSeverity: info
+  eventSources:
+    - kind: HelmRelease
+      name: "*"
+      namespace: kubernetes-reflector
+    - kind: HelmRelease
+      name: "*"
+      namespace: littlelink
+    - kind: HelmRelease
+      name: "*"
+      namespace: longhorn-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: openebs
+    - kind: HelmRelease
+      name: "*"
+      namespace: snapshot-controller
+    - kind: HelmRelease
+      name: "*"
+      namespace: spegel
+    - kind: HelmRelease
+      name: "*"
+      namespace: system
+    - kind: HelmRelease
+      name: "*"
+      namespace: volsync
+    - kind: HelmRelease
+      name: "*"
+      namespace: actualserver
+    - kind: HelmRelease
+      name: "*"
+      namespace: authelia
+    - kind: HelmRelease
+      name: "*"
+      namespace: blocky
+    - kind: HelmRelease
+      name: "*"
+      namespace: cert-manager
+    - kind: HelmRelease
+      name: "*"
+      namespace: chromium
+    - kind: HelmRelease
+      name: "*"
+      namespace: cloudflared
+    - kind: HelmRelease
+      name: "*"
+      namespace: cloudflareddns
+    - kind: HelmRelease
+      name: "*"
+      namespace: cloudnative-pg
+    - kind: HelmRelease
+      name: "*"
+      namespace: clusterissuer
+    - kind: HelmRelease
+      name: "*"
+      namespace: code-server
+    - kind: HelmRelease
+      name: "*"
+      namespace: default
+    - kind: HelmRelease
+      name: "*"
+      namespace: external-service
+    - kind: HelmRelease
+      name: "*"
+      namespace: flux-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: generic-device-plugin
+    - kind: HelmRelease
+      name: "*"
+      namespace: glances
+    - kind: HelmRelease
+      name: "*"
+      namespace: hastebin
+    - kind: HelmRelease
+      name: "*"
+      namespace: homepage
+    - kind: HelmRelease
+      name: "*"
+      namespace: it-tools
+    - kind: HelmRelease
+      name: "*"
+      namespace: jts3servermod
+    - kind: HelmRelease
+      name: "*"
+      namespace: kitchenowl
+    - kind: HelmRelease
+      name: "*"
+      namespace: kube-node-lease
+    - kind: HelmRelease
+      name: "*"
+      namespace: kube-public
+    - kind: HelmRelease
+      name: "*"
+      namespace: kube-system
+    - kind: HelmRelease
+      name: "*"
+      namespace: kubernetes-dashboard
+    - kind: HelmRelease
+      name: "*"
+      namespace: lldap
+    - kind: HelmRelease
+      name: "*"
+      namespace: media
+    - kind: HelmRelease
+      name: "*"
+      namespace: metallb-config
+    - kind: HelmRelease
+      name: "*"
+      namespace: metallb
+    - kind: HelmRelease
+      name: "*"
+      namespace: minecraft
+    - kind: HelmRelease
+      name: "*"
+      namespace: nextcloud
+    - kind: HelmRelease
+      name: "*"
+      namespace: nvidia-device-plugin
+    - kind: HelmRelease
+      name: "*"
+      namespace: pihole
+    - kind: HelmRelease
+      name: "*"
+      namespace: kube-prometheus-stack
+    - kind: HelmRelease
+      name: "*"
+      namespace: renovate
+    - kind: HelmRelease
+      name: "*"
+      namespace: rustdesk
+    - kind: HelmRelease
+      name: "*"
+      namespace: sinusbot
+    - kind: HelmRelease
+      name: "*"
+      namespace: snippet-box
+    - kind: HelmRelease
+      name: "*"
+      namespace: speedtest-tracker
+    - kind: HelmRelease
+      name: "*"
+      namespace: synctube
+    - kind: HelmRelease
+      name: "*"
+      namespace: system-upgrade
+    - kind: HelmRelease
+      name: "*"
+      namespace: teamspeak3
+    - kind: HelmRelease
+      name: "*"
+      namespace: traefik
+    - kind: HelmRelease
+      name: "*"
+      namespace: tsn-ranksystem
+    - kind: HelmRelease
+      name: "*"
+      namespace: uptime-kuma
+    - kind: HelmRelease
+      name: "*"
+      namespace: vaultwarden
+    - kind: HelmRelease
+      name: "*"
+      namespace: wg-easy
+    - kind: HelmRelease
+      name: "*"
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/alert-notification-v1beta3.json
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: discord-kustomization
+  namespace: flux-system
+spec:
+  providerRef:
+    name: discord
+  eventSeverity: error
+  eventSources:
+    - kind: Kustomization
+      name: "*"

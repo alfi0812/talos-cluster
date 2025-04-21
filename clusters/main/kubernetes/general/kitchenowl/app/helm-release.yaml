@@ -1,0 +1,92 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kitchenowl
+  namespace: kitchenowl
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kitchenowl
+      version: 11.5.3
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    global:
+      stopAll: false
+    credentials:
+      minio:
+        type: s3
+        url: "https://${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-kitchenowl"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: kitchenowl.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
+    persistence:
+      data:
+        volsync:
+        - name: data
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 20 0 * * *
+    cnpg:
+      main:
+        cluster:
+          singleNode: true
+        mode: recovery
+        backups:
+          enabled: true
+          credentials: minio
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "0 5 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
+        recovery:
+          method: object_store
+          credentials: minio
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                FRONT_URL: https://kitchenowl.${DOMAIN_G}
+                SMTP_HOST: ${SMTP_HOST}
+                SMTP_PORT: 465
+                SMTP_USER: ${SMTP_USER}
+                SMTP_PASS: ${SMTP_PASSWORD_KITCHENOWL}
+                SMTP_FROM: kitchenowl@${DOMAIN_G}

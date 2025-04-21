@@ -1,0 +1,144 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: nextcloud
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: nextcloud
+      version: 33.0.10
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  timeout: 20m
+  values:
+    global:
+      stopAll: false
+    credentials:
+      minio:
+        type: s3
+        url: "https://${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-nextcloud"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
+        integrations:
+          traefik:
+            enabled: false
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: nextcloud.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
+      admin:
+        enabled: true
+        ingressClassName: external
+        primary: false
+        annotations:
+          nginx.ingress.kubernetes.io/whitelist-source-range: '${IP_WHITELIST}'
+          nginx.ingress.kubernetes.io/auth-method: 'GET'
+          nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
+          nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
+          nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
+        targetSelector:
+          collabora: collabora
+        integrations:
+          traefik:
+            enabled: false
+            # auth, real-ip, local-only
+          certManager:
+            enabled: true
+            certificateIssuer: domain-1-le-prod
+        hosts:
+          - host: nextcloud.${DOMAIN_1}
+            paths:
+              - path: /collabora/browser/dist/admin
+                pathType: Prefix
+    cnpg:
+      main:
+        cluster:
+          singleNode: true
+        # Only needed because my Nextcloud instance restored used pgVersion 15 as its quite old. Not needed otherwise
+        pgVersion: 15
+        mode: recovery
+        backups:
+          enabled: true
+          credentials: minio
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "0 5 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
+        recovery:
+          method: object_store
+          credentials: minio
+    persistence:
+      config:
+        volsync:
+        - name: config
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 10 1 * * *
+      data:
+        enabled: true
+        type: nfs
+        path: /${NEXTCLOUD_NFS_PATH}
+        server: ${CONFIG_TRUENAS_IP}
+      html:
+        volsync:
+        - name: html
+          type: restic
+          credentials: minio
+          dest:
+            enabled: true
+          src:
+            enabled: true
+            trigger:
+              schedule: 20 1 * * *
+    nextcloud:
+      collabora:
+        enabled: true
+      credentials:
+        initialAdminPassword: "${NEXTCLOUD_PASSWORD}"
+        initialAdminUser: "${NEXTCLOUD_USER}"
+      general:
+        accessIP: ${NGINX_EXTERNAL_IP}
+        default_phone_region: DE
+      previews:
+        providers:
+        - BMP
+        - GIF
+        - JPEG
+        - Krita
+        - MarkDown
+        - MP3
+        - OpenDocument
+        - PNG
+        - TXT
+        - XBitmap

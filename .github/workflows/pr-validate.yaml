@@ -1,0 +1,130 @@
+name: "Pull Request: Validate"
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.head_ref }}-pr-validate
+  cancel-in-progress: true
+env:
+  KUBERNETES_DIR: ./clusters/main/kubernetes
+
+jobs:
+  kubeconform:
+    name: Kubeconform
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Setup Workflow Tools
+        run: brew install fluxcd/tap/flux kubeconform kustomize
+      - name: Run kubeconform
+        shell: bash
+        run: bash ./scripts/kubeconform.sh ${{ env.KUBERNETES_DIR }}
+
+  test:
+    name: Flux Local - Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Run flux-local test
+        uses: docker://ghcr.io/allenporter/flux-local:v7.3.0@sha256:81870d4e24a3691e0ef9a258505100b194e550e1f8ffeb5e696fdbaab1913429
+        with:
+          args: >-
+            test
+            --all-namespaces
+            --enable-helm
+            --verbose
+
+  diff:
+    name: Flux Diff
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    strategy:
+      matrix:
+        resources: ["helmrelease", "kustomization"]
+      max-parallel: 4
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          path: pull
+      - name: Checkout Default Branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: "${{ github.event.repository.default_branch }}"
+          path: default
+      - name: Diff Resources
+        uses: docker://ghcr.io/allenporter/flux-local:v7.3.0@sha256:81870d4e24a3691e0ef9a258505100b194e550e1f8ffeb5e696fdbaab1913429
+        with:
+          args: >-
+            diff ${{ matrix.resources }}
+            --unified 6
+            --path /github/workspace/pull/
+            --path-orig /github/workspace/default/
+            --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart,app"
+            --limit-bytes 10000
+            --all-namespaces
+            --sources "cluster"
+            --output-file diff.patch
+      - name: Generate Diff
+        id: diff
+        run: |
+          echo 'diff<<EOF' >> $GITHUB_OUTPUT
+          cat diff.patch >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+
+          echo '## Flux ${{ matrix.resources }} diff' >> $GITHUB_STEP_SUMMARY
+          echo '```diff' >> $GITHUB_STEP_SUMMARY
+          cat diff.patch >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - if: ${{ steps.diff.outputs.diff != '' }}
+        name: Generate Token
+        uses: actions/create-github-app-token@3ff1caaa28b64c9cc276ce0a02e2ff584f3900c5 # v2.0.2
+        id: app-token
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+
+      - if: ${{ steps.diff.outputs.diff != '' }}
+        name: Add Comment
+        continue-on-error: true
+        uses: mshick/add-pr-comment@b8f338c590a895d50bcbfa6c5859251edc8952fc # v2
+        with:
+          repo-token: "${{ steps.app-token.outputs.token }}"
+          message-id: "${{ github.event.pull_request.number }}/kubernetes/${{ matrix.resources }}"
+          header: ${{ github.event.pull_request.number }}/kubernetes/${{ matrix.resource }}
+          message-failure: Diff was not successful
+          message: |
+            ```diff
+            ${{ steps.diff.outputs.diff }}
+            ```
+
+  automerge-and-approve:
+    needs:
+      - kubeconform
+      - diff
+      - test
+    name: Automerge and Approve build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Token
+        uses: actions/create-github-app-token@3ff1caaa28b64c9cc276ce0a02e2ff584f3900c5 # v2.0.2
+        id: app-token
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+      - name: automerge
+        uses: pascalgn/automerge-action@7961b8b5eec56cc088c140b56d864285eabd3f67 # v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          UPDATE_RETRIES: 12
+          UPDATE_RETRY_SLEEP: 60000
+          MERGE_METHOD: squash

@@ -1,0 +1,105 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lldap
+  namespace: lldap
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: lldap
+      version: 7.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      stopAll: false
+    credentials:
+      minio:
+        type: s3
+        url: "https://${S3_URL_MINIO}"
+        bucket: "${S3_BUCKET}-lldap"
+        accessKey: "${S3_ACCESS_KEY}"
+        secretKey: "${S3_SECRET_KEY}"
+        encrKey: "${S3_ENCRYPTION_KEY}"
+    ingress:
+        main:
+          ingressClassName: internal
+          enabled: true
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-1-le-prod
+          hosts:
+            - host: lldap.${DOMAIN_1}
+              paths:
+                - path: /
+                  pathType: Prefix
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                LLDAP_HTTP_URL: https://lldap.${DOMAIN_1}
+                LLDAP_LDAP_BASE_DN: dc=${DN},dc=${DC}
+                LLDAP_LDAP_USER_DN: admin
+                LLDAP_LDAP_USER_EMAIL: admin@${DOMAIN_1}
+                LLDAP_LDAP_USER_PASS: ${LLDAP_PASSWORD}
+                LLDAP_SMTP_OPTIONS__FROM: LLDAP Admin <lldap@${DOMAIN_1}>
+                LLDAP_SMTP_OPTIONS__PASSWORD: ${SMTP_PASSWORD_LLDAP}
+                LLDAP_SMTP_OPTIONS__PORT: 587
+                LLDAP_SMTP_OPTIONS__REPLY_TO: Do not reply <lldap@${DOMAIN_1}>
+                LLDAP_SMTP_OPTIONS__SERVER: ${SMTP_HOST}
+                LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION: TLS
+                LLDAP_SMTP_OPTIONS__USER: ${SMTP_USER}
+                LLDAP_VERBOSE: false
+                LLDAP_key_file: /data/private_key
+    cnpg:
+      main:
+        mode: recovery
+        cluster:
+          singleNode: true
+        backups:
+          enabled: true
+          credentials: minio
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "0 5 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
+        recovery:
+          method: object_store
+          credentials: minio
+
+    persistence:
+      data:
+        volsync:
+          - name: data
+            type: restic
+            credentials: minio
+            dest:
+              enabled: true
+            src:
+              enabled: true
+              trigger:
+                schedule: 20 0 * * *
