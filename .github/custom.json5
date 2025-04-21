@@ -1,5 +1,6 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "gitAuthor": "viserion-renovate",
     "major": {
     "enabled": true,
     "automerge": false,
