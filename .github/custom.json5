@@ -2,9 +2,14 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "gitAuthor": "viserion-renovate[bot] <199991279+viserion-renovate[bot]@users.noreply.github.com>",
     "major": {
-    "enabled": true,
-    "automerge": false,
-    "dependencyDashboardApproval": false
+      "enabled": true,
+      "automerge": false,
+      "dependencyDashboardApproval": false
+    },
+    "pin": {
+      "enabled": true,
+      "automerge": true,
+      "dependencyDashboardApproval": false
     },
     "ignore": [],
     "packageRules": [
