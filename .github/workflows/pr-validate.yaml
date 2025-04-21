@@ -39,7 +39,7 @@ jobs:
             --enable-helm
             --verbose
 
-  flux-diff:
+  diff:
     name: Flux Diff
     runs-on: ubuntu-latest
     permissions:
@@ -101,7 +101,7 @@ jobs:
   automerge-and-approve:
     needs:
       - kubeconform
-      - flux-diff
+      - diff
       - test
     name: Automerge and Approve build
     runs-on: ubuntu-latest
