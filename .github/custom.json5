@@ -11,6 +11,11 @@
       "automerge": true,
       "dependencyDashboardApproval": false
     },
+    "pinDigest": {
+      "enabled": true,
+      "automerge": true,
+      "dependencyDashboardApproval": false
+    },
     "ignore": [],
     "packageRules": [
       {
