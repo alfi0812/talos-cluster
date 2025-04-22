@@ -33,6 +33,11 @@ spec:
               env:
                 LANGS: en_US, de_DE
                 INSTALL_BOOK_AND_ADVANCED_HTML_OPS: true
+    securityContext:
+      container:
+        readOnlyRootFilesystem: false
+        runAsGroup: 0
+        runAsUser: 0
     ingress:
       main:
         enabled: true
