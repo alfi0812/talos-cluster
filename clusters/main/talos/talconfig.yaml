@@ -20,6 +20,7 @@ cniConfig:
     name: none
 patches:
     - '@./patches/all.yaml'
+    - '@./patches/vpn.yaml'
 nodes:
     # We would adivce to always stick to a "k8s-something-1" style naming scheme
     - hostname: k8s-control-1
@@ -46,7 +47,6 @@ nodes:
             officialExtensions:
               - siderolabs/util-linux-tools
               - siderolabs/iscsi-tools
-              - siderolabs/qemu-guest-agent
               - siderolabs/nonfree-kmod-nvidia-lts
               - siderolabs/nvidia-container-toolkit-lts
       patches:
@@ -66,7 +66,6 @@ controlPlane:
                 officialExtensions:
                     - siderolabs/util-linux-tools
                     - siderolabs/iscsi-tools
-                    - siderolabs/qemu-guest-agent
 
     machineFiles:
     - content: |
@@ -98,7 +97,7 @@ worker:
                 officialExtensions:
                     - siderolabs/util-linux-tools
                     - siderolabs/iscsi-tools
-                    - siderolabs/qemu-guest-agent
+
     machineFiles:
     - content: |
         [plugins."io.containerd.cri.v1.images"]
