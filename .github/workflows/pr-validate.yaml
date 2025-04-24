@@ -68,7 +68,7 @@ jobs:
             --unified 6
             --path /github/workspace/pull/
             --path-orig /github/workspace/default/
-            --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart,app"
+            --strip-attrs "helm.sh/chart,checksum/config,checksum/redis,app.kubernetes.io/version,chart,app"
             --limit-bytes 10000
             --all-namespaces
             --sources "cluster"
