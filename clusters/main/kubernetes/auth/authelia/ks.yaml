@@ -10,3 +10,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: cluster
+  dependsOn:
+  - name: lldap

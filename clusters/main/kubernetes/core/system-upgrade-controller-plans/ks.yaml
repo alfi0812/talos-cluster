@@ -10,3 +10,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: cluster
+  targetNamespace: system-upgrade
+  dependsOn:
+  - name: system-upgrade-controller
+  wait: false
+  retryInterval: 1m
+  timeout: 5m
