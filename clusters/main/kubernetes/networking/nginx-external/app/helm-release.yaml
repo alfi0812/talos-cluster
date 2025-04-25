@@ -58,7 +58,7 @@ spec:
         ssl-protocols: TLSv1.3 TLSv1.2
         use-forwarded-headers: "true"
         forwarded-for-header: "CF-Connecting-IP"
-        proxy-real-ip-cidr: "172.16.0.0/16,172.17.0.0/16"
+        proxy-real-ip-cidr: "${PODNET},${SVCNET}"
       metrics:
         enabled: false
         serviceMonitor:
