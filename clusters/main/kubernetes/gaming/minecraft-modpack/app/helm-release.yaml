@@ -25,7 +25,7 @@ spec:
       retries: 3
   values:
     global:
-      stopAll: false
+      stopAll: true
     mcbackup:
       enabled: false
     persistence:
