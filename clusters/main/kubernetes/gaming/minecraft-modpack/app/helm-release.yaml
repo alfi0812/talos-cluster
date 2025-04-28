@@ -39,7 +39,10 @@ spec:
     resources:
       limits:
         cpu: 8000m
-        memory: 16Gi
+        memory: 24Gi
+      requests:
+        cpu: 4000m
+        memory: 20Gi
     workload:
       main:
         podSpec:
@@ -63,7 +66,7 @@ spec:
                   -XX:MaxTenuringThreshold=1
                 MAX_TICK_TIME: 60000
                 DISABLE_HEALTHCHECK: true
-                MEMORY: 12G
+                MEMORY: 20G
                 OVERRIDE_SERVER_PROPERTIES: false
                 RCON_PASSWORD: ${MINECRAFT_PASSWORD}
                 TYPE: FORGE
