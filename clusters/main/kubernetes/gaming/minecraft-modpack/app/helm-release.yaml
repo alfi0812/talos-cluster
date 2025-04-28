@@ -50,8 +50,8 @@ spec:
             main:
               imageSelector: j17Image
               env:
-                FORCE_REDOWNLOAD: '{{false}}'
-                FORGEVERSION: 43.2.14
+                FORCE_REDOWNLOAD: 'false'
+                FORGEVERSION: 43.5.0
                 FORGE_INSTALLER: ''
                 FORGE_INSTALLER_URL: ''
                 GENERATOR_SETTINGS: ''
