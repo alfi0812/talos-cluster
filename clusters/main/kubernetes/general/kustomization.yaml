@@ -12,5 +12,4 @@ resources:
   - kitchenowl/ks.yaml
   - nextcloud/ks.yaml
   - actualserver/ks.yaml
-  - stirling-pdf/ks.yaml
   - hammond/ks.yaml
