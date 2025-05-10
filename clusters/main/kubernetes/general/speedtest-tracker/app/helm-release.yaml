@@ -63,6 +63,8 @@ spec:
               schedule: 30 1 * * *
     cnpg:
       main:
+        annotations:
+          cnpg.io/skipEmptyWalArchiveCheck: "true"
         cluster:
           singleNode: true
         backups:

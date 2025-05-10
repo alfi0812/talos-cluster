@@ -75,6 +75,8 @@ spec:
                 LLDAP_key_file: /data/private_key
     cnpg:
       main:
+        annotations:
+          cnpg.io/skipEmptyWalArchiveCheck: "true"
         mode: recovery
         cluster:
           singleNode: true

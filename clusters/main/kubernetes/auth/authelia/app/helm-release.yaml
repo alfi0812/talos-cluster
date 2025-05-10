@@ -53,6 +53,8 @@ spec:
                   pathType: Prefix
     cnpg:
       main:
+        annotations:
+          cnpg.io/skipEmptyWalArchiveCheck: "true"
         mode: recovery
         cluster:
           singleNode: true

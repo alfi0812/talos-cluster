@@ -76,6 +76,8 @@ spec:
                 pathType: Prefix
     cnpg:
       main:
+        annotations:
+          cnpg.io/skipEmptyWalArchiveCheck: "true"
         cluster:
           singleNode: true
         # Only needed because my Nextcloud instance restored used pgVersion 15 as its quite old. Not needed otherwise
