@@ -31,7 +31,7 @@ spec:
     keepHistory: false
   values:
     global:
-      stopAll: true
+      stopAll: false
     ingress:
         main:
           enabled: true
