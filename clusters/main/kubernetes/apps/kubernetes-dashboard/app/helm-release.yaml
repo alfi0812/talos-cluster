@@ -30,6 +30,8 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    global:
+      stopAll: true
     ingress:
         main:
           enabled: true
