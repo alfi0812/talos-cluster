@@ -6,3 +6,4 @@ resources:
   - external-service-pikvm/ks.yaml
   - external-service-repeater/ks.yaml
   - external-service-truenas/ks.yaml
+  - external-service-ulm/ks.yaml
