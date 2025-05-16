@@ -34,8 +34,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      pullPolicy: Always
     cni:
       exclusive: false
     l2announcements:
