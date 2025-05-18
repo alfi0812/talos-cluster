@@ -8,4 +8,3 @@ data:
   TALOS_VERSION: v1.10.1
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   KUBERNETES_VERSION: v1.33.1
-  
