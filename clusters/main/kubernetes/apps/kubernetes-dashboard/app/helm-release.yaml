@@ -30,8 +30,6 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    podOptions:
-      hostUsers: false
     global:
       stopAll: false
     ingress:
