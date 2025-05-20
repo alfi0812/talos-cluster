@@ -24,6 +24,8 @@ spec:
     remediation:
       retries: 3
   values:
+    podOptions:
+      hostUsers: false
     ingress:
       main:
         ingressClassName: external
