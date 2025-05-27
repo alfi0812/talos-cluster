@@ -126,7 +126,7 @@ spec:
         port: 587
         security: starttls
         user: ${SMTP_USER}
-        password: ${SMTP_PASSWORD_VAULTWARDEN}
+        password: ${SMTP_PASSWORD}
 
     workload:
       main:
