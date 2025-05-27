@@ -130,7 +130,7 @@ spec:
         smtp:
           address: 'smtp://${SMTP_HOST}:587'
           username: ${SMTP_USER}
-          password: ${SMTP_PASSWORD_AUTHELIA}
+          password: ${SMTP_PASSWORD}
           sender: auth@${DOMAIN_1}
           startup_check_address: auth@${DOMAIN_1}
           disable_html_emails: true
