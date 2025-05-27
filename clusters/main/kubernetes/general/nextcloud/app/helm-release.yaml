@@ -26,7 +26,7 @@ spec:
   timeout: 20m
   values:
     global:
-      stopAll: true
+      stopAll: false
     credentials:
       minio:
         type: s3
@@ -82,7 +82,7 @@ spec:
           singleNode: true
         # Only needed because my Nextcloud instance restored used pgVersion 15 as its quite old. Not needed otherwise
         pgVersion: 15
-        mode: standalone
+        mode: recovery
         backups:
           enabled: true
           credentials: minio
