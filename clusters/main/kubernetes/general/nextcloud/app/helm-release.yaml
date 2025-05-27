@@ -82,9 +82,9 @@ spec:
           singleNode: true
         # Only needed because my Nextcloud instance restored used pgVersion 15 as its quite old. Not needed otherwise
         pgVersion: 15
-        mode: standalone
+        mode: recovery
         backups:
-          enabled: false
+          enabled: true
           credentials: minio
           scheduledBackups:
             - name: daily-backup
