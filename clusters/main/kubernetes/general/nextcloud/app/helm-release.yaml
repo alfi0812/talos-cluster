@@ -76,15 +76,13 @@ spec:
                 pathType: Prefix
     cnpg:
       main:
-        hibernate: true
         annotations:
           cnpg.io/skipEmptyWalArchiveCheck: "true"
         cluster:
           singleNode: true
-          instances: 1
         # Only needed because my Nextcloud instance restored used pgVersion 15 as its quite old. Not needed otherwise
         pgVersion: 15
-        mode: recovery
+        mode: standalone
         backups:
           enabled: true
           credentials: minio
