@@ -84,7 +84,7 @@ spec:
         pgVersion: 15
         mode: recovery
         backups:
-          enabled: false
+          enabled: true
           credentials: minio
           scheduledBackups:
             - name: daily-backup

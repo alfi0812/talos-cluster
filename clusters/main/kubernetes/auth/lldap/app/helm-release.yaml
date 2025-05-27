@@ -81,7 +81,7 @@ spec:
         cluster:
           singleNode: true
         backups:
-          enabled: false
+          enabled: true
           credentials: minio
           scheduledBackups:
             - name: daily-backup
