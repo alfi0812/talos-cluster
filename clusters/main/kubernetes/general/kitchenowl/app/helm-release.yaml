@@ -69,7 +69,7 @@ spec:
           singleNode: true
         mode: recovery
         backups:
-          enabled: true
+          enabled: false
           credentials: minio
           scheduledBackups:
             - name: daily-backup
