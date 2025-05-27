@@ -89,7 +89,7 @@ spec:
                 MAIL_FROM_ADDRESS: speedtest@${DOMAIN_1}
                 MAIL_HOST: ${SMTP_HOST}
                 MAIL_MAILER: smtp
-                MAIL_PASSWORD: ${SMTP_PASSWORD_SPEEDTEST_TRACKER}
+                MAIL_PASSWORD: ${SMTP_PASSWORD}
                 MAIL_PORT: 465
                 MAIL_USERNAME: ${SMTP_USER}
                 PUBLIC_DASHBOARD: false
