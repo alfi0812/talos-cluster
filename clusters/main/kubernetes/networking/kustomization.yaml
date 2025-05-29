@@ -8,4 +8,3 @@ resources:
   - wg-easy/ks.yaml
   - nginx-external/ks.yaml
   - nginx-internal/ks.yaml
-  - test/ks.yaml

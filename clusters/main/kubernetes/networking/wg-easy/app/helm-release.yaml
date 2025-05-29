@@ -86,3 +86,7 @@ spec:
                 WG_DEFAULT_DNS: ${PIHOLE_IP}
                 PASSWORD_HASH: ${WG_EASY_PASSWORD}
                 UI_TRAFFIC_STATS: "true"
+                # for v15.0.0
+                # HOST: "0.0.0.0"
+                # PORT: "{{ .Values.service.main.ports.main.port }}"
+                # INSECURE: false
