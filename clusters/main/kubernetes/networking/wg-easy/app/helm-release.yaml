@@ -38,6 +38,8 @@ spec:
           accessKey: "${S3_ACCESS_KEY}"
           secretKey: "${S3_SECRET_KEY}"
           encrKey: "${S3_ENCRYPTION_KEY}"
+    #image:
+    #  tag: 15.0.0@sha256:07ed8f95eeeb4082c2e6afe3f5f3991723f496a21dd2dc25860b119a728b9ab0
     service:
       vpn:
         loadBalancerIP: ${WG_EASY_IP}
@@ -86,19 +88,3 @@ spec:
                 WG_DEFAULT_DNS: ${PIHOLE_IP}
                 PASSWORD_HASH: ${WG_EASY_PASSWORD}
                 UI_TRAFFIC_STATS: "true"
-    securityContext:
-      container:
-        PUID: 0
-        UMASK: '0022'
-        advanced: false
-        capabilities:
-          add:
-          - NET_ADMIN
-          - NET_RAW
-          - SYS_MODULE
-        readOnlyRootFilesystem: false
-        runAsGroup: 0
-        runAsNonRoot: false
-        runAsUser: 0
-        privileged: true
-
