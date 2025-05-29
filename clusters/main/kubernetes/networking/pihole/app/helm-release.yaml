@@ -50,9 +50,6 @@ spec:
       dns:
         loadBalancerIP: ${PIHOLE_IP}
         type: LoadBalancer
-      main:
-        loadBalancerIP: ${PIHOLE_IP}
-        type: LoadBalancer
     ingress:
       main:
         enabled: true
