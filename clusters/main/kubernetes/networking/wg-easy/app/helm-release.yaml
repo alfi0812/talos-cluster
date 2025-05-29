@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: wg-easy
-      version: 16.4.2
+      version: 17.0.0
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -81,12 +81,6 @@ spec:
           containers:
             main:
               env:
-                WG_HOST: wireguard.${DOMAIN_1}
-                WG_MTU: 1350
-                WG_DEFAULT_DNS: ${PIHOLE_IP}
-                PASSWORD_HASH: ${WG_EASY_PASSWORD}
-                UI_TRAFFIC_STATS: "true"
-                # for v15.0.0
-                # HOST: "0.0.0.0"
-                # PORT: "{{ .Values.service.main.ports.main.port }}"
-                # INSECURE: false
+                HOST: "0.0.0.0"
+                PORT: "{{ .Values.service.main.ports.main.port }}"
+                INSECURE: false
