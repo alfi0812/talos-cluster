@@ -54,7 +54,7 @@ spec:
         keep-alive-requests: 10000
         keep-alive: 120
         proxy-body-size: 0
-        proxy-buffer-size: 16k
+        proxy-buffer-size: 16M
         ssl-protocols: TLSv1.3 TLSv1.2
         use-forwarded-headers: "true"
         proxy-real-ip-cidr: "${PODNET},${SVCNET}"
