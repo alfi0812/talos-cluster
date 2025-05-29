@@ -65,7 +65,6 @@ spec:
         integrations:
           traefik:
             enabled: false
-            # auth, real-ip, local-only
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
