@@ -75,7 +75,7 @@ spec:
                 startup:
                   type: tcp
               env:
-                HOST: "test.${DOMAIN_1}"
+                HOST: "0.0.0.0"
                 PORT: "{{ .Values.service.main.ports.main.port }}"
                 INSECURE: false
     persistence:
