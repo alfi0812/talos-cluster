@@ -58,8 +58,6 @@ spec:
         enabled: true
         ingressClassName: internal
         annotations:
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            rewrite ^/$ /admin permanent;
           nginx.ingress.kubernetes.io/auth-method: 'GET'
           nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
           nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
