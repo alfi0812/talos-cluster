@@ -88,7 +88,7 @@ spec:
     cnpg:
       main:
         annotations:
-          cnpg.io/skipEmptyWalArchiveCheck: "true"
+          cnpg.io/skipEmptyWalArchiveCheck: "enabled"
         cluster:
           singleNode: true
         backups:
