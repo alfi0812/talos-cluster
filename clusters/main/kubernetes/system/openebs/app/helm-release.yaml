@@ -29,6 +29,10 @@ spec:
         volumeSnapshots:
           enabled: false
           keep: false
+    loki:
+      enabled: false
+    alloy:
+      enabled: false
     engines:
       local:
         # The lvm-localpv backend contains a duplicate of snapshot controller which will cause conflicts
