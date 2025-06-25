@@ -51,6 +51,7 @@ nodes:
               - siderolabs/nvidia-container-toolkit-lts
       patches:
         - "@./patches/nvidia.yaml"
+        - '@./patches/gc.yaml'
 controlPlane:
     patches:
         - '@./patches/controlplane.yaml'
