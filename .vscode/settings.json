@@ -11,5 +11,6 @@
         "bash": {
           "path": "/usr/bin/fish"
         }
-      }
+      },
+      "terminal.integrated.defaultProfile.linux": "fish"
 }
