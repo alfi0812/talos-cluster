@@ -7,3 +7,4 @@ resources:
   - external-service-repeater/ks.yaml
   - external-service-truenas/ks.yaml
   - external-service-ulm/ks.yaml
+  - external-service-printer/ks.yam
