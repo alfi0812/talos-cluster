@@ -24,8 +24,7 @@ spec:
     remediation:
       retries: 3
   values:
-    securityContext:
-      resources:
+    resources:
         requests:
           cpu: 10m
           memory: 50Mi
