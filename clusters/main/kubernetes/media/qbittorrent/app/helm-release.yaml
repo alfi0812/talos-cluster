@@ -95,13 +95,13 @@ spec:
           env:
             FIREWALL: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0/24"
-            VPN_TYPE: wireguard
-            VPN_SERVICE_PROVIDER: custom
+            VPN_TYPE: "wireguard"
+            VPN_SERVICE_PROVIDER: "custom"
             WIREGUARD_PUBLIC_KEY: ${WG_PUBLIC_KEY}
             WIREGUARD_PRIVATE_KEY: ${WG_PRIVATE_KEY}
             FIREWALL_VPN_INPUT_PORTS: ${WG_FIREWALL_INPUT_PORT}
             WIREGUARD_ENDPOINT_PORT: 1443
             WIREGUARD_ADDRESSES: ${WG_ADDRESSES}
             HTTPPROXY: "on"
-            FIREWALL_INPUT_PORTS: 10095,8888
+            FIREWALL_INPUT_PORTS: "10095,8888"
             WIREGUARD_ENDPOINT_IP: ${WG_ENDPOINT_IP}
