@@ -62,13 +62,8 @@ spec:
         enabled: true
         ingressClassName: external
         integrations:
-          traefik:
-            enabled: false
           certManager:
             enabled: true
             certificateIssuer: domain-0-le-prod
         hosts:
           - host: sinusbot.${DOMAIN_0}
-            paths:
-              - path: /
-                pathType: Prefix

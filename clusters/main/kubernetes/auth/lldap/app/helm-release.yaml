@@ -43,16 +43,11 @@ spec:
           ingressClassName: internal
           enabled: true
           integrations:
-            traefik:
-              enabled: false
             certManager:
               enabled: true
               certificateIssuer: domain-1-le-prod
           hosts:
             - host: lldap.${DOMAIN_1}
-              paths:
-                - path: /
-                  pathType: Prefix
     workload:
       main:
         podSpec:

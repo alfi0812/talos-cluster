@@ -49,13 +49,8 @@ spec:
         enabled: true
         ingressClassName: external
         integrations:
-          traefik:
-            enabled: false
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
         hosts:
           - host: renovate.${DOMAIN_1}
-            paths:
-              - path: /
-                pathType: Prefix

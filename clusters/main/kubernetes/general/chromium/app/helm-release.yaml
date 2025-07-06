@@ -44,18 +44,11 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
           nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
         integrations:
-          traefik:
-            enabled: false
-            entrypoints:
-            - websecure
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
         hosts:
           - host: chrome.${DOMAIN_1}
-            paths:
-              - path: /
-                pathType: Prefix
     workload:
       main:
         podSpec:

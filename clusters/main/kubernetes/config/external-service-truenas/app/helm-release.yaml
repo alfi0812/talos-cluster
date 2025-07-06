@@ -49,12 +49,7 @@ spec:
           nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
         hosts:
         - host: truenas.${DOMAIN_1}
-          paths:
-          - path: /
-            pathType: Prefix
         integrations:
           certManager:
             certificateIssuer: domain-1-le-prod
             enabled: true
-          traefik:
-            enabled: false

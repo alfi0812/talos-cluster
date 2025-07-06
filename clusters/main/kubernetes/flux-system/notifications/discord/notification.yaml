@@ -170,9 +170,6 @@ spec:
       namespace: teamspeak3
     - kind: HelmRelease
       name: "*"
-      namespace: traefik
-    - kind: HelmRelease
-      name: "*"
       namespace: tsn-ranksystem
     - kind: HelmRelease
       name: "*"

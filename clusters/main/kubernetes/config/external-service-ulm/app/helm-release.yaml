@@ -45,12 +45,7 @@ spec:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
         - host: ulm.${DOMAIN_1}
-          paths:
-          - path: /
-            pathType: Prefix
         integrations:
           certManager:
             certificateIssuer: domain-1-le-prod
             enabled: true
-          traefik:
-            enabled: false
