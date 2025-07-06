@@ -39,16 +39,11 @@ spec:
         enabled: true
         ingressClassName: external
         integrations:
-          traefik:
-            enabled: false
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
         hosts:
           - host: vault.${DOMAIN_1}
-            paths:
-              - path: /
-                pathType: Prefix
       admin:
         enabled: true
         ingressClassName: external
@@ -62,9 +57,6 @@ spec:
         targetSelector:
           main: main
         integrations:
-          traefik:
-            enabled: false
-            # auth, real-ip, local-only
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod

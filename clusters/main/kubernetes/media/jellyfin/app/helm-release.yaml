@@ -43,16 +43,11 @@ spec:
         enabled: true
         ingressClassName: internal
         integrations:
-          traefik:
-            enabled: false
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
         hosts:
           - host: jellyfin.${DOMAIN_1}
-            paths:
-              - path: /
-                pathType: Prefix
     persistence:
       config:
         volsync:
