@@ -56,7 +56,7 @@ spec:
         integrations:
           nginx:
             enabled: true
-            ipWhitelist: ${IP_WHITELIST}
+            ipWhitelist: 192.168.178.0/24
             auth:
               type: "authelia"
               internalHost: "http://authelia.authelia.svc.cluster.local:9091/api/verify"
