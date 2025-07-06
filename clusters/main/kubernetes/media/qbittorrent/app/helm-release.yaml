@@ -87,7 +87,7 @@ spec:
             targetPort: 8888
     addons:
       gluetun:
-        enabled: true
+        enabled: false
         container:
           resources:
             limits:
