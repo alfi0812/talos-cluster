@@ -93,6 +93,7 @@ spec:
             limits:
               truecharts.org/tun: 1
           env:
+            # Needs common fixing
             FIREWALL: "off"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0/24"
             FIREWALL_OUTBOUT_SUBNETS: "192.168.0.0/24, 192.168.178.0/24"
