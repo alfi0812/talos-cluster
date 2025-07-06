@@ -48,7 +48,6 @@ spec:
       admin:
         enabled: true
         ingressClassName: external
-        primary: false
         annotations:
           nginx.ingress.kubernetes.io/whitelist-source-range: '${IP_WHITELIST}'
           nginx.ingress.kubernetes.io/auth-method: 'GET'
