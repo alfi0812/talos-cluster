@@ -75,8 +75,6 @@ spec:
                 pathType: Prefix
     cnpg:
       main:
-        annotations:
-          cnpg.io/skipEmptyWalArchiveCheck: "enabled"
         cluster:
           singleNode: true
           instances: 1

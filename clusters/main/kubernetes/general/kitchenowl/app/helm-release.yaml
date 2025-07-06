@@ -63,8 +63,6 @@ spec:
               schedule: 20 0 * * *
     cnpg:
       main:
-        annotations:
-          cnpg.io/skipEmptyWalArchiveCheck: "enabled"
         cluster:
           singleNode: true
         mode: recovery
