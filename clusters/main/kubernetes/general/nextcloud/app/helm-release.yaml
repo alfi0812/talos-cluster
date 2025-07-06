@@ -58,10 +58,9 @@ spec:
             enabled: true
             ipWhitelist: ["${IP_WHITELIST}"]
             auth:
-              type: "authelia"
-              internalHost: "http://authelia.authelia.svc.cluster.local:9091/api/verify"
-              externalHost: "https://auth.${DOMAIN_1}?rm=$request_method"
-              responseHeaders: [Remote-User,Remote-Name,Remote-Groups,Remote-Email]
+                type: "authelia"
+                internalHost: "authelia.authelia.svc.cluster.local:9091"
+                externalHost: "auth.${DOMAIN_1}"
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
