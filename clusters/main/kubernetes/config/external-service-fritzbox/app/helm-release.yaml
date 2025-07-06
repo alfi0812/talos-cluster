@@ -41,6 +41,8 @@ spec:
       main:
         enabled: true
         ingressClassName: internal
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
         hosts:
         - host: fritzbox.${DOMAIN_1}
         integrations:
