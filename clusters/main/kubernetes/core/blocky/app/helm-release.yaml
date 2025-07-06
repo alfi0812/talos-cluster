@@ -37,6 +37,9 @@ spec:
         externalTrafficPolicy: Local
         loadBalancerIP: ${BLOCKY_IP}
         type: LoadBalancer
+        integrations:
+          metallb:
+            enabled: true
     workload:
       main:
         replicas: 1
