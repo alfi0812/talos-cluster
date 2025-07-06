@@ -32,13 +32,8 @@ spec:
         ingressClassName: external
         enabled: true
         integrations:
-          traefik:
-            enabled: false
           certManager:
             enabled: true
             certificateIssuer: domain-0-le-prod
         hosts:
           - host: it.${DOMAIN_0}
-            paths:
-              - path: /
-                pathType: Prefix
