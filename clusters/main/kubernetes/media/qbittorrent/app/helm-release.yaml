@@ -73,15 +73,8 @@ spec:
       qbitportforward:
         enabled: false
     service:
-      main:
-        integrations:
-          metallb:
-            enabled: true
       proxy:
         enabled: true
-        integrations:
-          metallb:
-            enabled: true
         ports:
           gluetun:
             enabled: true
