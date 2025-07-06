@@ -90,7 +90,7 @@ spec:
               truecharts.org/tun: 1
           env:
             # Needs common fixing
-            FIREWALL: "off"
+            FIREWALL: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0/24,${PODNET},${SVCNET}"
             VPN_TYPE: "wireguard"
             VPN_SERVICE_PROVIDER: "custom"
