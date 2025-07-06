@@ -24,8 +24,8 @@ spec:
     remediation:
       retries: 3
   values:
-    portal:
-      open:
-        enabled: false
+    resources:
+      requests:
+        cpu: 10m
     global:
       stopAll: false

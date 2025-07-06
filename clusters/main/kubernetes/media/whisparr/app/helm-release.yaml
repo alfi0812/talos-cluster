@@ -25,9 +25,9 @@ spec:
       retries: 3
   timeout: 20m
   values:
-    portal:
-      open:
-        enabled: false
+    resources:
+      requests:
+        cpu: 10m
     global:
       stopAll: false
     credentials:
