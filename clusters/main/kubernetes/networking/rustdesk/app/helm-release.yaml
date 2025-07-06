@@ -34,9 +34,6 @@ spec:
         accessKey: "${S3_ACCESS_KEY}"
         secretKey: "${S3_SECRET_KEY}"
         encrKey: "${S3_ENCRYPTION_KEY}"
-    portal:
-      open:
-        enabled: false
     workload:
       main:
         podSpec:
@@ -60,3 +57,7 @@ spec:
       main:
         loadBalancerIP: ${RUSTDESK_IP}
         type: LoadBalancer
+        externalTrafficPolicy: Local
+        integrations:
+          metallb:
+            enabled: true

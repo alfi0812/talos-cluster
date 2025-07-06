@@ -39,8 +39,12 @@ spec:
         encrKey: "${S3_ENCRYPTION_KEY}"
     service:
       main:
+        externalTrafficPolicy: Local
         loadBalancerIP: ${MINECRAFT_IP}
         type: LoadBalancer
+        integrations:
+          metallb:
+            enabled: true
     persistence:
       icons:
         enabled: true

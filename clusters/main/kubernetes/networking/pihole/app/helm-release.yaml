@@ -50,6 +50,10 @@ spec:
       dns:
         loadBalancerIP: ${PIHOLE_IP}
         type: LoadBalancer
+        externalTrafficPolicy: Local
+        integrations:
+          metallb:
+            enabled: true
     ingress:
       main:
         enabled: true

@@ -38,6 +38,10 @@ spec:
       main:
         loadBalancerIP: ${TEAMSPEAK3_IP}
         type: LoadBalancer
+        externalTrafficPolicy: Local
+        integrations:
+          metallb:
+            enabled: true
     workload:
       main:
         podSpec:

@@ -43,6 +43,9 @@ spec:
         loadBalancerIP: ${WG_EASY_IP}
         type: LoadBalancer
         externalTrafficPolicy: Local
+        integrations:
+          metallb:
+            enabled: true
     ingress:
       main:
         enabled: true
