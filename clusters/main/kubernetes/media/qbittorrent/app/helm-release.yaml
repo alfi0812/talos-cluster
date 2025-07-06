@@ -94,7 +94,6 @@ spec:
               truecharts.org/tun: 1
           env:
             FIREWALL: "on"
-            FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0"
             VPN_TYPE: "wireguard"
             VPN_SERVICE_PROVIDER: "custom"
             WIREGUARD_PUBLIC_KEY: "${WG_PUBLIC_KEY}"
