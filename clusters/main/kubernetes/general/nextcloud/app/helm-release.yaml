@@ -51,12 +51,13 @@ spec:
       admin:
         enabled: true
         ingressClassName: external
+        annotations:
+          nginx.ingress.kubernetes.io/whitelist-source-range: '${IP_WHITELIST}'
         targetSelector:
           collabora: collabora
         integrations:
           nginx:
             enabled: true
-            ipWhitelist: 192.168.178.0/24,192.168.0.0/24
             auth:
               type: "authelia"
               internalHost: "http://authelia.authelia.svc.cluster.local:9091/api/verify"
