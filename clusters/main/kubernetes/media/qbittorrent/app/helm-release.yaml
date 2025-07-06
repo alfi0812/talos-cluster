@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: qbittorrent
-      version: 23.0.4
+      version: 23.0.5
       sourceRef:
         kind: HelmRepository
         name: truecharts
@@ -90,7 +90,7 @@ spec:
               truecharts.org/tun: 1
           env:
             # Needs common fixing
-            FIREWALL: "off"
+            FIREWALL: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0/24"
             VPN_TYPE: "wireguard"
             VPN_SERVICE_PROVIDER: "custom"
@@ -101,5 +101,6 @@ spec:
             WIREGUARD_ADDRESSES: "${WG_ADDRESSES}"
             HTTPPROXY: "on"
             # If tpl works 10095 shouldnt be needed here
-            FIREWALL_INPUT_PORTS: "10095,8888"
+            # FIREWALL_INPUT_PORTS: "10095,8888"
+            FIREWALL_INPUT_PORTS: "8888"
             WIREGUARD_ENDPOINT_IP: "${WG_ENDPOINT_IP}"
