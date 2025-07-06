@@ -24,6 +24,11 @@ spec:
     remediation:
       retries: 3
   values:
+    securityContext:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 50Mi
     ingress:
       main:
         ingressClassName: external
