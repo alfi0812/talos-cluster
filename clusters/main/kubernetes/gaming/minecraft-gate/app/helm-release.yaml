@@ -26,6 +26,9 @@ spec:
   values:
     global:
       stopAll: false
+    resources:
+      requests:
+        cpu: 10m
     credentials:
       minio:
         type: s3
