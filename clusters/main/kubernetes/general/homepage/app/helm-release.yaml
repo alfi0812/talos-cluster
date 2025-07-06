@@ -38,12 +38,13 @@ spec:
       main:
         enabled: true
         ingressClassName: external
-        annotations:
-          nginx.ingress.kubernetes.io/auth-method: 'GET'
-          nginx.ingress.kubernetes.io/auth-url: 'http://authelia.authelia.svc.cluster.local:9091/api/verify'
-          nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
-          nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
         integrations:
+          nginx:
+            enabled: true
+            auth:
+              type: "authelia"
+              internalHost: "http://authelia.authelia.svc.cluster.local:9091/api/verify"
+              externalHost: "https://auth.${DOMAIN_1}?rm=$request_method"
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
