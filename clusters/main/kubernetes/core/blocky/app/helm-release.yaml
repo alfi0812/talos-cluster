@@ -40,7 +40,6 @@ spec:
     workload:
       main:
         replicas: 1
-        strategy: RollingUpdate
     blocking:
       clientGroupsBlock:  []
     k8sgateway:
