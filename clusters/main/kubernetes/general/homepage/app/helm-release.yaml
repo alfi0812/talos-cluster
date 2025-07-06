@@ -64,6 +64,7 @@ spec:
                 type: "authelia"
                 internalHost: "http://authelia.authelia.svc.cluster.local:9091/api/verify"
                 externalHost: "https://auth.${DOMAIN_1}?rm=$request_method"
+                responseHeaders: [Remote-User,Remote-Name,Remote-Groups,Remote-Email]
             certManager:
               certificateIssuer: domain-1-le-prod
               enabled: true
