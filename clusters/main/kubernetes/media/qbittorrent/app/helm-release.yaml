@@ -95,7 +95,7 @@ spec:
           env:
             FIREWALL: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0/24"
-            FIREWALL_OUTBOUT_SUBNETS: "192.168.0.0/24"
+            FIREWALL_OUTBOUT_SUBNETS: "192.168.0.0/24, 192.168.178.0/24"
             VPN_TYPE: "wireguard"
             VPN_SERVICE_PROVIDER: "custom"
             WIREGUARD_PUBLIC_KEY: "${WG_PUBLIC_KEY}"
