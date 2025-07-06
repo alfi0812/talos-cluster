@@ -89,7 +89,6 @@ spec:
             limits:
               truecharts.org/tun: 1
           env:
-            # Needs common fixing
             FIREWALL: "on"
             FIREWALL_OUTBOUND_SUBNETS: "192.168.178.0/24"
             VPN_TYPE: "wireguard"
@@ -100,7 +99,5 @@ spec:
             WIREGUARD_ENDPOINT_PORT: 1443
             WIREGUARD_ADDRESSES: "${WG_ADDRESSES}"
             HTTPPROXY: "on"
-            # If tpl works 10095 shouldnt be needed here
-            # FIREWALL_INPUT_PORTS: "10095,8888"
             FIREWALL_INPUT_PORTS: "8888"
             WIREGUARD_ENDPOINT_IP: "${WG_ENDPOINT_IP}"
