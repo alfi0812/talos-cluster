@@ -45,6 +45,9 @@ spec:
             certificateIssuer: domain-1-le-prod
         hosts:
           - host: nextcloud.${DOMAIN_1}
+            paths:
+              - path: /
+                pathType: Prefix
       admin:
         enabled: true
         ingressClassName: external
