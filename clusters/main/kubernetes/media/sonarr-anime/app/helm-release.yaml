@@ -47,16 +47,11 @@ spec:
           nginx.ingress.kubernetes.io/auth-signin: 'https://auth.${DOMAIN_1}?rm=$request_method'
           nginx.ingress.kubernetes.io/auth-response-headers: 'Remote-User,Remote-Name,Remote-Groups,Remote-Email'
         integrations:
-          traefik:
-            enabled: false
           certManager:
             enabled: true
             certificateIssuer: domain-1-le-prod
         hosts:
           - host: anime.${DOMAIN_1}
-            paths:
-              - path: /
-                pathType: Prefix
     persistence:
       config:
         volsync:
