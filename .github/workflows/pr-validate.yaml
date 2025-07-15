@@ -12,7 +12,7 @@ env:
 jobs:
   kubeconform:
     name: Kubeconform
-    runs-on: ubuntu-latest
+    runs-on: actions-runners-personal
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -26,7 +26,7 @@ jobs:
 
   test:
     name: Flux Local - Test
-    runs-on: ubuntu-latest
+    runs-on: actions-runners-personal
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -41,7 +41,7 @@ jobs:
 
   diff:
     name: Flux Diff
-    runs-on: ubuntu-latest
+    runs-on: actions-runners-personal
     permissions:
       contents: read
       pull-requests: write
@@ -111,7 +111,7 @@ jobs:
       - diff
       - test
     name: Automerge and Approve build
-    runs-on: ubuntu-latest
+    runs-on: actions-runners-personal
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
