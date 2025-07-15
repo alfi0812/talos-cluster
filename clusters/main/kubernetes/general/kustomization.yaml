@@ -7,6 +7,7 @@ resources:
   - it-tools/ks.yaml
   - snippet-box/ks.yaml
   - uptime-kuma/ks.yaml
+  - speedtest-tracker/ks.yaml
   - vaultwarden/ks.yaml
   - kitchenowl/ks.yaml
   - nextcloud/ks.yaml
