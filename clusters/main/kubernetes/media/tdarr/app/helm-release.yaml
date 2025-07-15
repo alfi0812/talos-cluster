@@ -97,6 +97,8 @@ spec:
         existingClaim: media-nfs-pvc
     resources:
       limits:
+        cpu: 4000m
+        memory: 8Gi
         nvidia.com/gpu: 1
     workload:
       main:
